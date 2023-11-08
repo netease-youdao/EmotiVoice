@@ -2,7 +2,7 @@
 
 
 <div align="center">
-    <h1>EmotiVoice易魔声 🔈: 多音色提示控制TTS</h1>
+    <h1>EmotiVoice易魔声 😊: 多音色提示控制TTS</h1>
 </div>
 
 <div align="center">
