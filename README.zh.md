@@ -91,7 +91,7 @@ streamlit run demo_page.py
 - [tacotron](https://github.com/keithito/tacotron)
 - [KAN-TTS](https://github.com/alibaba-damo-academy/KAN-TTS)
 - [StyleTTS](https://github.com/yl4579/StyleTTS)
-
+- [Simbert](https://github.com/ZhuiyiTechnology/simbert)
 
 # 许可
 
