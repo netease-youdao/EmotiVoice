@@ -1,6 +1,20 @@
-# EmotiVoice - 多音色提示控制TTS
+<font size=4> README: <a href="./README.md">EN</a> | 中文  </font>
 
-[English](README.md)
+
+<div align="center">
+    <h1>EmotiVoice - 多音色提示控制TTS</h1>
+</div>
+
+<div align="center">
+    <a href="./README.md"><img src="https://img.shields.io/badge/README-EN-red"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://twitter.com/YDopensource"><img src="https://img.shields.io/badge/follow-%40YDOpenSource-1DA1F2?logo=twitter&style={style}"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<br>
+
 
 **EmotiVoice**是一个强大的开源TTS引擎，支持中英文双语，包含2000多种不同的音色，以及特色的**情感合成**功能，支持合成包含快乐、兴奋、悲伤、愤怒等广泛情感的语音。
 
