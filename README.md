@@ -1,6 +1,20 @@
-# EmotiVoice - a Multi-Voice and Prompt-Controlled TTS Engine
+<font size=4> README: EN | <a href="./README.zh.md">中文</a>  </font>
 
-[中文](README.zh.md)
+
+<div align="center">
+    <h1>EmotiVoice - a Multi-Voice and Prompt-Controlled TTS Engine</h1>
+</div>
+
+<div align="center">
+    <a href="./README.zh.md"><img src="https://img.shields.io/badge/README-中文版本-red"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-yellow"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://twitter.com/YDopensource"><img src="https://img.shields.io/badge/follow-%40YDOpenSource-1DA1F2?logo=twitter&style={style}"></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<br>
+
 
 **EmotiVoice** is a powerful and modern open-source text-to-speech engine. EmotiVoice speaks both English and Chinese, and with over 2000 different voices. The most prominent feature is **emotional synthesis**, allowing you to create speech with a wide range of emotions, including happy, excited, sad, angry and others.
 
