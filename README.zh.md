@@ -8,9 +8,9 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
 
 以下是EmotiVoice生成的几个示例:
 
-- [Chinese audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/565f4e28-6a0c-4989-a3e6-b83e64d884de)
+- [Chinese audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/af038c31-632a-4626-ad23-3f9a92b2bec2)
 
-- [English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/3c070045-9969-40df-8c3a-63239c622084)
+- [English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/bf94e5b4-87bf-40b1-882e-ad96d4084864)
 
 # 快速入门
 
