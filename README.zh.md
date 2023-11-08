@@ -26,9 +26,9 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
 
 - [English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/bf94e5b4-87bf-40b1-882e-ad96d4084864)
 
-# 快速入门
+## 快速入门
 
-## EmotiVoice Docker镜像
+### EmotiVoice Docker镜像
 
 尝试EmotiVoice最简单的方法是运行docker镜像。你需要一台带有NVidia GPU的机器。先按照[Linux](https://www.server-world.info/en/note?os=Ubuntu_22.04&p=nvidia&f=2)和[Windows WSL2](https://zhuanlan.zhihu.com/p/653173679)平台的说明安装NVidia容器工具包。然后可以直接运行EmotiVoice镜像：
 
@@ -38,7 +38,7 @@ docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 
 现在打开浏览器，导航到 http://localhost:8501 ，就可以体验EmotiVoice强大的TTS功能。
 
-## 完整安装
+### 完整安装
 
 ```sh
 conda create -n EmotiVoice python=3.8 -y
@@ -47,14 +47,14 @@ pip install torch torchaudio
 pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba pypinyin
 ```
 
-## 准备模型文件
+### 准备模型文件
 
 ```sh
 git lfs install
 git lfs clone https://huggingface.co/WangZeJun/simbert-base-chinese WangZeJun/simbert-base-chinese
 ```
 
-## 推理
+### 推理
 
 1. 下载[预训练模型](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing), 然后运行:
 
@@ -85,15 +85,15 @@ pip install streamlit
 streamlit run demo_page.py
 ```
 
-# 训练
+## 训练
 
 待推出。
 
-# 未来工作
+## 未来工作
 
 * 当前的实现侧重于通过提示控制情绪/风格。它只使用音高、速度、能量和情感作为风格因素，而不使用性别。但是将其更改为样式、音色控制并不复杂，类似于PromptTTS的原始闭源实现。
 
-# 致谢
+## 致谢
 
 - [PromptTTS](https://speechresearch.github.io/prompttts/). PromptTTS论文是本工作的重要基础。
 - [LibriTTS](https://www.openslr.org/60/). 训练使用了LibriTTS开放数据集。
@@ -107,7 +107,7 @@ streamlit run demo_page.py
 - [StyleTTS](https://github.com/yl4579/StyleTTS)
 - [Simbert](https://github.com/ZhuiyiTechnology/simbert)
 
-# 许可
+## 许可
 
 EmotiVoice是根据Apache-2.0许可证提供的 - 有关详细信息，请参阅[许可证文件](./LICENSE)。
 
