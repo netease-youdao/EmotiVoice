@@ -1,0 +1,104 @@
+###########################################################
+#                FEATURE EXTRACTION SETTING               #
+###########################################################
+
+sr: 16000          # sr
+n_fft: 1024        # FFT size (samples).
+hop_length: 256    # Hop size (samples). 12.5ms
+win_length: 1024   # Window length (samples). 50ms
+                   # If set to null it will be the same as fft_size.
+window: "hann"     # Window function.
+
+fmin: 0           # Minimum frequency of Mel basis.
+fmax: null         # Maximum frequency of Mel basis.
+n_mels: 80         # The number of mel basis.
+
+pitch_min: 80          # Minimum f0 in linear domain for pitch extraction.
+pitch_max: 400         # Maximum f0 in linear domain for pitch extraction.
+
+segment_size: 32     
+
+
+cut_sil: True
+
+shuffle: True
+
+pretrained_am: "" # absolute path
+pretrained_vocoder: "" # absolute path
+pretrained_discriminator: "" # absolute path
+
+max_db: 1
+min_db: 0
+
+###########################################################
+#                       MODEL SETTING                     #
+###########################################################
+model:
+    speaker_embed_dim: 384
+    bert_embedding: 768
+    #### encoder ####
+    lang_embed_dim: 0
+    encoder_n_layers: 4
+    encoder_n_heads: 8
+    encoder_n_hidden: 384
+    encoder_p_dropout: 0.2
+    encoder_kernel_size_conv_mod: 3
+    encoder_kernel_size_depthwise: 7
+    #### decoder ####
+    decoder_n_layers: 4
+    decoder_n_heads: 8
+    decoder_n_hidden: 384
+    decoder_p_dropout: 0.2
+    decoder_kernel_size_conv_mod: 3
+    decoder_kernel_size_depthwise: 31
+    #### prosodic ####
+    bottleneck_size_p: 4
+    bottleneck_size_u: 256
+    ref_enc_filters: [32, 32, 64, 64, 128, 128]
+    ref_enc_size: 3
+    ref_enc_strides: [1, 2, 1, 2, 1]
+    ref_enc_pad: [1, 1]
+    ref_enc_gru_size: 32
+    ref_attention_dropout: 0.2
+    token_num: 32
+    predictor_kernel_size: 5
+    stop_prosodic_gradient: False
+    ref_p_dropout: 0.1
+    ref_n_heads: 4
+    #### variance ####
+    variance_n_hidden: 384
+    variance_n_layers: 3
+    variance_kernel_size: 3
+    variance_p_dropout: 0.1
+    variance_embed_kernel_size: 9
+    variance_embde_p_dropout: 0.0
+    stop_pitch_gradient: False
+    stop_duration_gradient: False
+    duration_p_dropout: 0.5
+    duration_n_layers: 2
+    duration_kernel_size: 3
+    #### postnet ####
+    postnet_layers: 0
+    postnet_chans: 256
+    postnet_filts: 5
+    use_batch_norm: True
+    postnet_dropout_rate: 0.5
+    #### generator ####
+    resblock: "1"
+    upsample_rates: [8,8,2,2]
+    upsample_kernel_sizes: [16,16,4,4]
+    initial_channel: 80
+    upsample_initial_channel: 512
+    resblock_kernel_sizes: [3,7,11]
+    resblock_dilation_sizes: [[1,3,5], [1,3,5], [1,3,5]]
+    r: 1
+###########################################################
+#                     OPTIMIZER SETTING                   #
+###########################################################
+optimizer:
+  lr: 1.25e-5
+  betas: [0.5, 0.9]
+  eps: 1.0e-9
+  weight_decay: 0.0
+scheduler:
+  gamma: 0.999875
