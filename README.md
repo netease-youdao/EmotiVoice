@@ -2,7 +2,7 @@
 
 
 <div align="center">
-    <h1>EmotiVoice - a Multi-Voice and Prompt-Controlled TTS Engine</h1>
+    <h1>EmotiVoice 🔈: a Multi-Voice and Prompt-Controlled TTS Engine</h1>
 </div>
 
 <div align="center">
