@@ -31,9 +31,9 @@ Here are a few samples that EmotiVoice generates:
 
 
 
-# Quickstart
+## Quickstart
 
-## EmotiVoice Docker image
+### EmotiVoice Docker image
 
 The easiest way to try EmotiVoice is by running the docker image. You need a machine with a NVidia GPU. If you have not done so, set up NVidia container toolkit by following the instructions for [Linux](https://www.server-world.info/en/note?os=Ubuntu_22.04&p=nvidia&f=2) or [Windows WSL2](https://github.com/nyp-sit/it3103/blob/main/nvidia-docker-wsl2.md). Then EmotiVoice can be run with,
 
@@ -43,7 +43,7 @@ docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 
 Now open your browser and navigate to http://localhost:8501 to start using EmotiVoice's powerful TTS capabilities.
 
-## Full installation
+### Full installation
 
 ```sh
 conda create -n EmotiVoice python=3.8 -y
@@ -52,7 +52,7 @@ pip install torch torchaudio
 pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba pypinyin
 ```
 
-## Prepare model files
+### Prepare model files
 
 ```sh
 git lfs install
@@ -66,7 +66,7 @@ wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_
 wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P WangZeJun/simbert-base-chinese
 ```
 
-## Inference
+### Inference
 
 1. You have to download the [pretrained models](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing), and run:
 ```sh
@@ -95,15 +95,15 @@ pip install streamlit
 streamlit run demo_page.py
 ```
 
-# Training
+## Training
 
 To be released.
 
-# Future work
+## Future work
 
 * The current implementation focuses on emotion/style control by prompts. It uses only pitch, speed, energy, and emotion as style factors, and does not use gender. But it is not complicated to change it to style/timbre control, similar to the original close-source implementation.
 
-# Credits
+## Credits
 
 - [PromptTTS](https://speechresearch.github.io/prompttts/). The PromptTTS paper is a key basis of this project.
 - [LibriTTS](https://www.openslr.org/60/). The LibriTTS dataset is used in training of EmotiVoice.
@@ -117,7 +117,7 @@ To be released.
 - [StyleTTS](https://github.com/yl4579/StyleTTS)
 - [Simbert](https://github.com/ZhuiyiTechnology/simbert)
 
-# License
+## License
 
 EmotiVoice is provided under the Apache-2.0 License - see the [LICENSE](./LICENSE) file for details.
 
