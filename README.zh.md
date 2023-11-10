@@ -96,6 +96,12 @@ streamlit run demo_page.py
 
 * 当前的实现侧重于通过提示控制情绪/风格。它只使用音高、速度、能量和情感作为风格因素，而不使用性别。但是将其更改为样式、音色控制并不复杂，类似于PromptTTS的原始闭源实现。
 
+## 微信群
+
+欢迎扫描下方个人二维码加入微信群。
+
+<img src="https://github.com/netease-youdao/EmotiVoice/assets/3909232/94ee0824-0304-4487-8682-664fafd09cdf" alt="qr" width="150"/>
+
 ## 致谢
 
 - [PromptTTS](https://speechresearch.github.io/prompttts/). PromptTTS论文是本工作的重要基础。
