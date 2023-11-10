@@ -103,6 +103,11 @@ To be released.
 
 * The current implementation focuses on emotion/style control by prompts. It uses only pitch, speed, energy, and emotion as style factors, and does not use gender. But it is not complicated to change it to style/timbre control, similar to the original close-source implementation.
 
+## WeChat group
+Welcome to scan the personal QR code below and join the WeChat group.
+
+<img src="https://github.com/netease-youdao/EmotiVoice/assets/3909232/94ee0824-0304-4487-8682-664fafd09cdf" alt="qr" width="150"/>
+
 ## Credits
 
 - [PromptTTS](https://speechresearch.github.io/prompttts/). The PromptTTS paper is a key basis of this project.
