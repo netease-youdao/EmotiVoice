@@ -55,7 +55,7 @@ st.markdown(f"""
          
 - You can download the audio by clicking on the vertical three points next to the displayed audio widget.
          
-- This interactive demo page is provided under the {html} file.
+- This interactive demo page is provided under the {html} file. The audio is synthesized by AI. 音频由AI合成，仅供参考。
          
 """, unsafe_allow_html=True)
 
