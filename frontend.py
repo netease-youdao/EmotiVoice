@@ -66,7 +66,7 @@ def split_py(py):
     return sm, ym
 
 
-chinese_punctuation_pattern = r'[\u3002\uff0c\uff1f\uff01\uff1b\uff1a\u201c\u201d\u2018\u2019\u300a\u300b\u3008\u3009\u3010\u3011\u300e\u300f\u2014\u2026]'
+chinese_punctuation_pattern = r'[\u3002\uff0c\uff1f\uff01\uff1b\uff1a\u201c\u201d\u2018\u2019\u300a\u300b\u3008\u3009\u3010\u3011\u300e\u300f\u2014\u2026\u3001\uff08\uff09]'
 
 
 def has_chinese_punctuation(text):
@@ -74,13 +74,39 @@ def has_chinese_punctuation(text):
     return match is not None
 def has_english_punctuation(text):
     return text in string.punctuation
+    
+def number_to_chinese(char: str):
+    chinese_digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+    chinese_units = ['', '十', '百', '千', '万', '亿']
 
+    result = ''
+    char_str = str(char)
+    length = len(char_str)
+
+    if char_str.isdigit():
+        if length == 1:
+            return chinese_digits[int(char)]
+        for i in range(length):
+            digit = int(char_str[i])
+            unit = length - i - 1
+
+            if digit != 0:
+                result += chinese_digits[digit] + chinese_units[unit]
+            else:
+                if unit == 0 or unit == 4 or unit == 8:
+                    result += chinese_units[unit]
+                elif result[-1] != '零' and result[-1] not in chinese_units:
+                    result += chinese_digits[digit]
+        return result
+    else:
+        return char
+        
 def g2p(text):
     res_text=["<sos/eos>"]
     seg_list = jieba.cut(text)
     for seg in seg_list:
-        
-        py =[_py[0] for _py in pinyin(seg, style=Style.TONE3,neutral_tone_with_five=True)]
+        _seg = [number_to_chinese(_seg) for _seg in seg]
+        py =[''.join(_py[0].split()) for _py in pinyin(_seg, style=Style.TONE3,neutral_tone_with_five=True)]
 
         if any([has_chinese_punctuation(_py) for _py in py])  or any([has_english_punctuation(_py) for _py in py]):
             res_text.pop()
