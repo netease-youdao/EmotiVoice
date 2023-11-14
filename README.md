@@ -102,9 +102,9 @@ To be released.
 
 ## Roadmap & Future work
 
-Our future plan can be found in the [ROADMAP](./ROADMAP.md) file.
+- Our future plan can be found in the [ROADMAP](./ROADMAP.md) file.
 
-The current implementation focuses on emotion/style control by prompts. It uses only pitch, speed, energy, and emotion as style factors, and does not use gender. But it is not complicated to change it to style/timbre control, similar to the original close-source implementation.
+- The current implementation focuses on emotion/style control by prompts. It uses only pitch, speed, energy, and emotion as style factors, and does not use gender. But it is not complicated to change it to style/timbre control, similar to the original close-source implementation.
 
 
 
