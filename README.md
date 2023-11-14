@@ -99,9 +99,14 @@ streamlit run demo_page.py
 
 To be released.
 
-## Future work
 
-* The current implementation focuses on emotion/style control by prompts. It uses only pitch, speed, energy, and emotion as style factors, and does not use gender. But it is not complicated to change it to style/timbre control, similar to the original close-source implementation.
+## Roadmap & Future work
+
+Our future plan can be found in the [ROADMAP](./ROADMAP.md) file.
+
+The current implementation focuses on emotion/style control by prompts. It uses only pitch, speed, energy, and emotion as style factors, and does not use gender. But it is not complicated to change it to style/timbre control, similar to the original close-source implementation.
+
+
 
 ## WeChat group
 Welcome to scan the personal QR code below and join the WeChat group.
