@@ -16,13 +16,14 @@ The plan is to finish 0.2 to 0.4 in Q4 2023.
 
 - [ ] First version of desktop application.
 - [ ] Support longer text.
-- [ ] Documentation: wiki page for hardware requirements.
+- [ ] Documentation: wiki page for hardware requirements. [#30](../../issues/30)
 
 ## EmotiVoice 0.2
 
-- [ ] Support mixed Chinese and English input text.
+- [ ] Support mixed Chinese and English input text. [#28](../../issues/28)
 - [ ] Resolve bugs related to certain modal particles, to make it more robust.
-- [ ] Documentation: voice list wiki page, this roadmap.
+- [ ] Documentation: voice list wiki page
+- [x] Documentation: this roadmap.
 
 ## EmotiVoice 0.1 (2023.11.10) first public version
 
