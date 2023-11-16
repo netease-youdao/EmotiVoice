@@ -29,7 +29,7 @@ from transformers import AutoTokenizer
 import base64
 from pathlib import Path
 
-DEVICE="cpu"
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MAX_WAV_VALUE = 32768.0
 
 config = Config()
