@@ -4,7 +4,7 @@
 
 - You are welcome to contribute the description of voices.
 
-- You can find more speaker info from [LibriVox](https://librivox.org/) by search their name.
+- You can find more speaker info from [LibriVox](https://librivox.org/) by searching their name.
 
 | ID | Voice Name | Gender | Description |
 |----|-------|--------|-------------|
