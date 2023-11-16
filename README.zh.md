@@ -68,7 +68,7 @@ mkdir -p outputs/prompt_tts_open_source_joint/ckpt
 
 2. 将`g_*`, `do_*`文件放到`outputs/prompt_tts_open_source_joint/ckpt`，将`checkpoint_*`放到`outputs/style_encoder/ckpt`中.
 3. 推理输入文本格式是：`<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
-  - 例如: `Maria_Kasper|非常开心|<sos/eos>  uo3 sp1 l ai2 sp0 d ao4 sp1 b ei3 sp0 j ing1 sp3 q ing1 sp0 h ua2 sp0 d a4 sp0 x ve2 <sos/eos>|我来到北京，清华大学`.
+  - 例如: `8051|非常开心|<sos/eos>  uo3 sp1 l ai2 sp0 d ao4 sp1 b ei3 sp0 j ing1 sp3 q ing1 sp0 h ua2 sp0 d a4 sp0 x ve2 <sos/eos>|我来到北京，清华大学`.
 4. 其中的音素（phonemes）可以这样得到：`python frontend.py data/my_text.txt > data/my_text_for_tts.txt`.
 
 5. 然后运行：
