@@ -2,7 +2,9 @@
 
 - Speaker info is mainly from [LibriTTS](https://www.openslr.org/60/) and [HiFiTTS](https://www.openslr.org/109/) dataset.
 
-- You are welcome to contribute the description of voices
+- You are welcome to contribute the description of voices.
+
+- You can find more speaker info from [LibriVox](https://librivox.org/) by search their name.
 
 | ID | Voice Name | Gender | Description |
 |----|-------|--------|-------------|
