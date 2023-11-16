@@ -1,4 +1,33 @@
+# Copyright 2023, YOUDAO
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
+
+# with thanks to arjun-234 in https://github.com/netease-youdao/EmotiVoice/pull/38.
+def get_labels_length(file_path):
+    """
+    Return labels and their count in a file.
+
+    Args:
+        file_path (str): The path to the file containing the labels.
+
+    Returns:
+        list: labels; int: The number of labels in the file.
+    """
+    with open(file_path) as f:
+        tokens = [t.strip() for t in f.readlines()]
+    return tokens, len(tokens)
 
 class Config:
     #### PATH ####
@@ -21,37 +50,26 @@ class Config:
     #### Model ####
     bert_hidden_size = 768
     style_dim = 128
-    downsample_ratio    = 1     # Whole Model    
+    downsample_ratio    = 1     # Whole Model
+
     #### Text ####
-    with open(token_list_path) as f:
-        tokens = [t.strip() for t in f.readlines()]
-    n_symbols           = len(tokens)
+    tokens, n_symbols = get_labels_length(token_list_path)
     sep                 = " "
 
     #### Speaker ####
-    with open(speaker2id_path) as f:
-        speakers = [t.strip() for t in f.readlines()]
-    speaker_n_labels = len(speakers)
+    speakers, speaker_n_labels = get_labels_length(speaker2id_path)
 
     #### Emotion ####
-    with open(emotion2id_path) as f:
-        emotions = [t.strip() for t in f.readlines()]
-    emotion_n_labels = len(emotions)
+    emotions, emotion_n_labels = get_labels_length(emotion2id_path)
 
     #### Speed ####
-    with open(speed2id_path) as f:
-        speeds = [t.strip() for t in f.readlines()]
-    speed_n_labels = len(speeds)
+    speeds, speed_n_labels = get_labels_length(speed2id_path)
 
     #### Pitch ####
-    with open(pitch2id_path) as f:
-        pitchs = [t.strip() for t in f.readlines()]
-    pitch_n_labels = len(pitchs)
+    pitchs, pitch_n_labels = get_labels_length(pitch2id_path)
 
     #### Energy ####
-    with open(energy2id_path) as f:
-        energys = [t.strip() for t in f.readlines()]
-    energy_n_labels = len(energys)
+    energys, energy_n_labels = get_labels_length(energy2id_path)
 
     #### Train ####
     # epochs              = 10
@@ -90,7 +108,7 @@ class Config:
     pitch_stats         = [225.089, 53.78]
 
     #### Energy ####
-    energy_stats         = [30.610, 21.78]
+    energy_stats        = [30.610, 21.78]
 
 
     #### Infernce ####
