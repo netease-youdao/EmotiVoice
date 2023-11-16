@@ -49,14 +49,14 @@ st.write("# Text-To-Speech")
 st.markdown(f"""
 ### How to use:
          
-- Simply select a speaker, type in the text you want to convert and the emotion prompt, like a single word or even a sentence.
-         
-- Then click on the synthesize button below to start voice synthesis.
-         
+- Simply select a **Speaker ID**, type in the **text** you want to convert and the emotion **Prompt**, like a single word or even a sentence. Then click on the **Synthesize** button below to start voice synthesis.
+
 - You can download the audio by clicking on the vertical three points next to the displayed audio widget.
-         
+
+- For more information on **'Speaker ID'**, please consult the [EmotiVoice voice wiki page](https://github.com/netease-youdao/EmotiVoice/tree/main/data/youdao/text)
+
 - This interactive demo page is provided under the {html} file. The audio is synthesized by AI. 音频由AI合成，仅供参考。
-         
+
 """, unsafe_allow_html=True)
 
 def g2p_cn(text):
@@ -168,21 +168,19 @@ models = get_models()
 
 
 def new_line(i):
-    col1, col2, col3, col4 = st.columns([1, 1, 3, 1])
+    col1, col2, col3, col4 = st.columns([1.5, 1.5, 3.5, 1.3])
     with col1:
-        speaker=st.selectbox("说话人/speaker", speakers, key=f"{i}_speaker")
+        speaker=st.selectbox("Speaker ID (说话人)", speakers, key=f"{i}_speaker")
     with col2:
-        prompt=st.text_input("提示/ prompt", "无", key=f"{i}_prompt")
+        prompt=st.text_input("Prompt (开心/悲伤)", "", key=f"{i}_prompt")
     with col3:
-        content=st.text_input("文本/text", "合成文本", key=f"{i}_text")
+        content=st.text_input("Text to be synthesized into speech (合成文本)", "合成文本", key=f"{i}_text")
     
     with col4:
-        lang=st.selectbox("语言/lang", ["ch", "us"], key=f"{i}_lang")
+        lang=st.selectbox("Language (语言)", ["ch", "us"], key=f"{i}_lang")
     
 
-    
-
-    flag = st.button(f"合成 / synthesize", key=f"{i}_button1")
+    flag = st.button(f"Synthesize (合成)", key=f"{i}_button1")
     if flag:
         if lang=="us":
             if contains_chinese(content):
