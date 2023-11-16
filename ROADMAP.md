@@ -22,7 +22,7 @@ The plan is to finish 0.2 to 0.4 in Q4 2023.
 
 - [ ] Support mixed Chinese and English input text. [#28](../../issues/28)
 - [ ] Resolve bugs related to certain modal particles, to make it more robust. [#18](../../issue/18)
-- [ ] Documentation: voice list wiki page
+- [x] Documentation: voice list wiki page
 - [x] Documentation: this roadmap.
 
 ## EmotiVoice 0.1 (2023.11.10) first public version
