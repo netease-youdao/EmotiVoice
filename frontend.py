@@ -17,12 +17,15 @@ from pypinyin import pinyin, lazy_pinyin, Style
 import jieba
 import string
 
+re_special_pinyin = re.compile(r'^(n|ng|m)$')
 def split_py(py):
     tone = py[-1]
     py = py[:-1]
     sm = ""
     ym = ""
     suf_r = ""
+    if re_special_pinyin.match(py):
+        py = 'e' + py
     if py[-1] == 'r':
         suf_r = 'r'
         py = py[:-1]
