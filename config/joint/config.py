@@ -1,6 +1,19 @@
 import os
 
 class Config:
+    def get_labels_length(self, file_path):
+        """
+        Returns the number of labels in a file.
+
+        Args:
+            file_path (str): The path to the file containing the labels.
+
+        Returns:
+            int: The number of labels in the file.
+        """
+        with open(file_path) as f:
+            return len(tuple(line.strip() for line in f.readlines()))
+
     #### PATH ####
     ROOT_DIR            = os.path.dirname(os.path.abspath("__file__"))
     DATA_DIR            = ROOT_DIR + "/data/youdao/"
@@ -21,37 +34,26 @@ class Config:
     #### Model ####
     bert_hidden_size = 768
     style_dim = 128
-    downsample_ratio    = 1     # Whole Model    
+    downsample_ratio    = 1     # Whole Model
+
     #### Text ####
-    with open(token_list_path) as f:
-        tokens = [t.strip() for t in f.readlines()]
-    n_symbols           = len(tokens)
+    n_symbols           = get_labels_length(token_list_path)
     sep                 = " "
 
     #### Speaker ####
-    with open(speaker2id_path) as f:
-        speakers = [t.strip() for t in f.readlines()]
-    speaker_n_labels = len(speakers)
+    speaker_n_labels = get_labels_length(speaker2id_path)
 
     #### Emotion ####
-    with open(emotion2id_path) as f:
-        emotions = [t.strip() for t in f.readlines()]
-    emotion_n_labels = len(emotions)
+    emotion_n_labels = get_labels_length(emotion2id_path)
 
     #### Speed ####
-    with open(speed2id_path) as f:
-        speeds = [t.strip() for t in f.readlines()]
-    speed_n_labels = len(speeds)
+    speed_n_labels = get_labels_length(speed2id_path)
 
     #### Pitch ####
-    with open(pitch2id_path) as f:
-        pitchs = [t.strip() for t in f.readlines()]
-    pitch_n_labels = len(pitchs)
+    pitch_n_labels = get_labels_length(pitch2id_path)
 
     #### Energy ####
-    with open(energy2id_path) as f:
-        energys = [t.strip() for t in f.readlines()]
-    energy_n_labels = len(energys)
+    energy_n_labels = get_labels_length(energy2id_path)
 
     #### Train ####
     # epochs              = 10
@@ -90,7 +92,7 @@ class Config:
     pitch_stats         = [225.089, 53.78]
 
     #### Energy ####
-    energy_stats         = [30.610, 21.78]
+    energy_stats        = [30.610, 21.78]
 
 
     #### Infernce ####
