@@ -100,12 +100,10 @@ streamlit run demo_page.py
 
 ## 微信群
 
-欢迎扫描下方二维码加入微信群。
+欢迎扫描下方左侧二维码加入微信群。商业合作扫描右侧个人二维码。
 
 <img src="https://github.com/netease-youdao/EmotiVoice/assets/49354974/cc3f4c8b-8369-4e50-89cc-e40d27a6bdeb" alt="qr" width="150"/>
-
-商业合作扫描下方个人二维码。
-
+&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/netease-youdao/EmotiVoice/assets/3909232/94ee0824-0304-4487-8682-664fafd09cdf" alt="qr" width="150"/>
 
 ## 致谢
