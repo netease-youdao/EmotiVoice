@@ -108,9 +108,9 @@ To be released.
 
 
 ## WeChat group
-Welcome to scan the personal QR code below and join the WeChat group.
+Welcome to scan the QR code below and join the WeChat group.
 
-<img src="https://github.com/netease-youdao/EmotiVoice/assets/3909232/94ee0824-0304-4487-8682-664fafd09cdf" alt="qr" width="150"/>
+<img src="https://github.com/netease-youdao/EmotiVoice/assets/49354974/cc3f4c8b-8369-4e50-89cc-e40d27a6bdeb" alt="qr" width="150"/>
 
 ## Credits
 
