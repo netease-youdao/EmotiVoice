@@ -2,7 +2,7 @@
 
 - Speaker info is mainly from [LibriTTS](https://www.openslr.org/60/) and [HiFiTTS](https://www.openslr.org/109/) dataset.
 
-- You are welcome to contribute the description of voices.
+- You are welcome to contribute the description of voices in [EmotiVoice 😊 wiki page](https://github.com/netease-youdao/EmotiVoice/wiki/%F0%9F%98%8A-voice-wiki-page).
 
 - You can find more speaker info from [LibriVox](https://librivox.org/) by searching their name.
 
