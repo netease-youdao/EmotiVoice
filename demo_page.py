@@ -19,7 +19,7 @@ from yacs import config as CONFIG
 import torch
 import re
 
-from frontend import g2p
+from frontend import g2p, re_digits
 from frontend_en import preprocess_english
 from config.joint.config import Config
 from models.prompt_tts_modified.jets import JETSGenerator
@@ -164,9 +164,7 @@ def tts(name, text, prompt, content, speaker, models):
 speakers = config.speakers
 models = get_models()
 
-
-
-
+re_english_word = re.compile('([a-z\d\-\.\']+)', re.I)
 def new_line(i):
     col1, col2, col3, col4 = st.columns([1.5, 1.5, 3.5, 1.3])
     with col1:
@@ -175,28 +173,26 @@ def new_line(i):
         prompt=st.text_input("Prompt (开心/悲伤)", "", key=f"{i}_prompt")
     with col3:
         content=st.text_input("Text to be synthesized into speech (合成文本)", "合成文本", key=f"{i}_text")
-    
     with col4:
-        lang=st.selectbox("Language (语言)", ["ch", "us"], key=f"{i}_lang")
-    
+        lang=st.selectbox("Language (语言)", ["zh_us"], key=f"{i}_lang")
 
     flag = st.button(f"Synthesize (合成)", key=f"{i}_button1")
     if flag:
-        if lang=="us":
-            if contains_chinese(content):
-                st.info("文本含有中文/input texts contain chinese")
-            else:
-                text = g2p_en(content)
-                path = tts(i, text, prompt, content, speaker, models)
-                st.audio(path, sample_rate=config.sampling_rate)
-        else:
-            if not contains_chinese(content):
-                st.info("文本含有英文/input texts contain english")
-            else:            
-                text = g2p_cn(content)
-                path = tts(i, text, prompt, content, speaker, models)
-                st.audio(path, sample_rate=config.sampling_rate)
-
+        parts = re_english_word.split(content)
+        tts_text = ["<sos/eos>"]
+        chartype = ''
+        for part in parts:
+            if part == ' ': continue
+            if re_digits.match(part) and chartype == 'cn' or contains_chinese(part):
+                tts_text.append( g2p_cn(part) )
+                chartype = 'cn'
+            elif re_english_word.match(part):
+                tts_text.append( g2p_en(part).replace("<sos/eos>", "") )
+                chartype = 'en'
+        tts_text.append("<sos/eos>")
+        text =  " ".join(tts_text)
+        path = tts(i, text, prompt, content, speaker, models)
+        st.audio(path, sample_rate=config.sampling_rate)
 
 
 
