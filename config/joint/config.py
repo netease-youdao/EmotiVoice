@@ -25,7 +25,7 @@ def get_labels_length(file_path):
     Returns:
         list: labels; int: The number of labels in the file.
     """
-    with open(file_path) as f:
+    with open(file_path, encoding = "UTF-8") as f:
         tokens = [t.strip() for t in f.readlines()]
     return tokens, len(tokens)
 
