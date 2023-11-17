@@ -19,8 +19,7 @@ from yacs import config as CONFIG
 import torch
 import re
 
-from frontend import g2p, re_digits
-from frontend_en import preprocess_english
+from frontend import g2p_cn_en
 from config.joint.config import Config
 from models.prompt_tts_modified.jets import JETSGenerator
 from models.prompt_tts_modified.simbert import StyleEncoder
@@ -59,23 +58,12 @@ st.markdown(f"""
 
 """, unsafe_allow_html=True)
 
-def g2p_cn(text):
-    return g2p(text)
-
-def g2p_en(text):
-    return preprocess_english(text)
-
 def scan_checkpoint(cp_dir, prefix, c=8):
     pattern = os.path.join(cp_dir, prefix + '?'*c)
     cp_list = glob.glob(pattern)
     if len(cp_list) == 0:
         return None
     return sorted(cp_list)[-1]
-
-def contains_chinese(text):
-    pattern = re.compile(r'[\u4e00-\u9fa5]')
-    match = re.search(pattern, text)
-    return match is not None
 
 @st.cache_resource
 def get_models():
@@ -178,19 +166,7 @@ def new_line(i):
 
     flag = st.button(f"Synthesize (合成)", key=f"{i}_button1")
     if flag:
-        parts = re_english_word.split(content)
-        tts_text = ["<sos/eos>"]
-        chartype = ''
-        for part in parts:
-            if part == ' ': continue
-            if re_digits.match(part) and chartype == 'cn' or contains_chinese(part):
-                tts_text.append( g2p_cn(part) )
-                chartype = 'cn'
-            elif re_english_word.match(part):
-                tts_text.append( g2p_en(part).replace("<sos/eos>", "") )
-                chartype = 'en'
-        tts_text.append("<sos/eos>")
-        text =  " ".join(tts_text)
+        text =  g2p_cn_en(content)
         path = tts(i, text, prompt, content, speaker, models)
         st.audio(path, sample_rate=config.sampling_rate)
 

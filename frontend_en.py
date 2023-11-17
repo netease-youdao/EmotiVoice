@@ -36,8 +36,6 @@ def read_lexicon(lex_path):
     return lexicon
 
 def preprocess_english(text):
-
-    
     lexicon = read_lexicon(f"{ROOT_DIR}/lexicon/librispeech-lexicon.txt")
 
     g2p = G2p()
@@ -56,7 +54,7 @@ def preprocess_english(text):
                 continue
 
             if phone[0].isalnum():
-                phones += ["[" + ph + "]" for ph in phone]
+                phones += ["[" + ph + "]" if ph != ' ' else 'engsp1' for ph in phone]
             elif phone == " ":
                 continue
             else:

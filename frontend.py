@@ -13,137 +13,37 @@
 # limitations under the License.
 
 import re
-from pypinyin import pinyin, lazy_pinyin, Style
-import jieba
-import string
+from frontend_cn import g2p_cn, re_digits
+from frontend_en import preprocess_english
 
-re_special_pinyin = re.compile(r'^(n|ng|m)$')
-def split_py(py):
-    tone = py[-1]
-    py = py[:-1]
-    sm = ""
-    ym = ""
-    suf_r = ""
-    if re_special_pinyin.match(py):
-        py = 'e' + py
-    if py[-1] == 'r':
-        suf_r = 'r'
-        py = py[:-1]
-    if py == 'zi' or py == 'ci' or py == 'si' or py == 'ri':
-        sm = py[:1]
-        ym = "ii"
-    elif py == 'zhi' or py == 'chi' or py == 'shi':
-        sm = py[:2]
-        ym = "iii"
-    elif py == 'ya' or py == 'yan' or py == 'yang' or py == 'yao' or py == 'ye' or py == 'yong' or py == 'you':
-        sm = ""
-        ym = 'i' + py[1:]
-    elif py == 'yi' or py == 'yin' or py == 'ying':
-        sm = ""
-        ym = py[1:]
-    elif py == 'yu' or py == 'yv' or py == 'yuan' or py == 'yvan' or py == 'yue ' or py == 'yve' or py == 'yun' or py == 'yvn':
-        sm = ""
-        ym = 'v' + py[2:]
-    elif py == 'wu':
-        sm = ""
-        ym = "u"
-    elif py[0] == 'w':
-        sm = ""
-        ym = "u" + py[1:]
-    elif len(py) >= 2 and (py[0] == 'j' or py[0] == 'q' or py[0] == 'x') and py[1] == 'u':
-        sm = py[0]
-        ym = 'v' + py[2:]
-    else:
-        seg_pos = re.search('a|e|i|o|u|v', py)
-        sm = py[:seg_pos.start()]
-        ym = py[seg_pos.start():]
-        if ym == 'ui':
-            ym = 'uei'
-        elif ym == 'iu':
-            ym = 'iou'
-        elif ym == 'un':
-            ym = 'uen'
-        elif ym == 'ue':
-            ym = 've'
-    ym += suf_r + tone
-    return sm, ym
-
-
-chinese_punctuation_pattern = r'[\u3002\uff0c\uff1f\uff01\uff1b\uff1a\u201c\u201d\u2018\u2019\u300a\u300b\u3008\u3009\u3010\u3011\u300e\u300f\u2014\u2026\u3001\uff08\uff09]'
-
-
-def has_chinese_punctuation(text):
-    match = re.search(chinese_punctuation_pattern, text)
-    return match is not None
-def has_english_punctuation(text):
-    return text in string.punctuation
-
-# with thanks to KimigaiiWuyi in https://github.com/netease-youdao/EmotiVoice/pull/17.
-re_digits = re.compile('(\d[\d\.]*)')
-re_decimals = re.compile('\d+\.\d+')
-def number_to_chinese(char: str):
-    chinese_digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-    chinese_units = ['', '十', '百', '千', '万', '亿']
-
-    result = ''
-    char_str = str(char)
-    length = len(char_str)
-
-    if re_digits.match(char):
-        if length == 1:
-            return chinese_digits[int(char)]
-        for i in range(length):
-            digit = int(char_str[i])
-            unit = length - i - 1
-
-            if digit != 0:
-                result += chinese_digits[digit] + chinese_units[unit]
-            else:
-                if unit == 0 or unit == 4 or unit == 8:
-                    result += chinese_units[unit]
-                elif result[-1] != '零' and result[-1] not in chinese_units:
-                    result += chinese_digits[digit]
-        return result
-    else:
-        return char
-
-def tn_chinese(text):
-    parts = re_digits.split(text)
-    words = []
+re_english_word = re.compile('([a-z\d\-\.\']+)', re.I)
+def g2p_cn_en(text):
+    parts = re_english_word.split(text)
+    tts_text = ["<sos/eos>"]
+    chartype = ''
     for part in parts:
-        if re_decimals.match(part):
-            # to be improved
-            for sub_part in re.split('(\.)', part):
-                if sub_part == '.':
-                    words.append('点')
-                else:
-                    words.append(number_to_chinese(sub_part))
-        elif re_digits.match(part):
-            words.append(number_to_chinese(part))
+        if part == ' ' or part == '': continue
+        if re_digits.match(part) and (chartype == 'cn' or chartype == '') or contains_chinese(part):
+            if chartype == 'en':
+                tts_text.append('eng_cn_sp')
+            phoneme = g2p_cn(part)
+            chartype = 'cn'
+        elif re_english_word.match(part):
+            if chartype == 'cn':
+                tts_text.append('cn_eng_sp')
+            phoneme = preprocess_english(part).replace(".", "")
+            chartype = 'en'
         else:
-            words.append(part)
-    return ''.join(words)
+            continue
+        tts_text.append( phoneme.replace("[ ]", "").replace("<sos/eos>", "") )
+    tts_text.append("<sos/eos>")
+    return " ".join(tts_text)
 
-def g2p(text):
-    res_text=["<sos/eos>"]
-    seg_list = jieba.cut(text)
-    for seg in seg_list:
-        if seg == " ": continue
-        seg_tn = tn_chinese(seg)
-        py =[_py[0] for _py in pinyin(seg_tn, style=Style.TONE3,neutral_tone_with_five=True)]
+def contains_chinese(text):
+    pattern = re.compile(r'[\u4e00-\u9fa5]')
+    match = re.search(pattern, text)
+    return match is not None
 
-        if any([has_chinese_punctuation(_py) for _py in py])  or any([has_english_punctuation(_py) for _py in py]):
-            res_text.pop()
-            res_text.append("sp3")
-        else:
-            
-            py = [" ".join(split_py(_py)) for _py in py]
-            
-            res_text.append(" sp0 ".join(py))
-            res_text.append("sp1")
-    res_text.pop()
-    res_text.append("<sos/eos>")
-    return " ".join(res_text)
 
 if __name__ == "__main__":
     import sys
@@ -155,6 +55,6 @@ if __name__ == "__main__":
     if isfile(text_file):
         fp = open(text_file, 'r')
         for line in fp:
-            phoneme=g2p(line.rstrip())
+            phoneme = g2p_cn_en(line.rstrip())
             print(phoneme)
         fp.close()
