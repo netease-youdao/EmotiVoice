@@ -149,26 +149,22 @@ class Predictor(BasePredictor):
             choices=Config().speakers,
             default="Maria_Kasper",
         ),
-    ) -> Any:
+    ) -> Path:
         """Run a single prediction on the model"""
         # processed_input = preprocess(image)
         # output = self.model(processed_image, scale)
         # return postprocess(output)
         if language=="English":
             if contains_chinese(content):
-                return "文本含有中文/input text contains Chinese, but language is English"
+                raise ValueError("文本含有中文/input text contains Chinese, but language is English")
             else:
                 text = g2p_en(content)
                 path = self.tts(text, prompt, content, speaker)
-                # st.audio(path, sample_rate=config.sampling_rate)
                 return Path(path)
         else:
             if not contains_chinese(content):
-                return "文本含有英文/input text contains English, but language is Chinese"
+                raise ValueError("文本含有英文/input text contains English, but language is Chinese")
             else:
                 text = g2p_cn(content)
                 path = self.tts(text, prompt, content, speaker)
-                # st.audio(path, sample_rate=config.sampling_rate)
                 return Path(path)
-
-
