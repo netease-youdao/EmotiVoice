@@ -119,6 +119,7 @@ streamlit run demo_page.py
 - [KAN-TTS](https://github.com/alibaba-damo-academy/KAN-TTS)
 - [StyleTTS](https://github.com/yl4579/StyleTTS)
 - [Simbert](https://github.com/ZhuiyiTechnology/simbert)
+- [cn2an](https://github.com/Ailln/cn2an). 易魔声集成了cn2an来处理数字。
 
 ## 许可
 

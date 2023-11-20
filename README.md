@@ -15,7 +15,6 @@
 </div>
 <br>
 
-
 **EmotiVoice** is a powerful and modern open-source text-to-speech engine. EmotiVoice speaks both English and Chinese, and with over 2000 different voices. The most prominent feature is **emotional synthesis**, allowing you to create speech with a wide range of emotions, including happy, excited, sad, angry and others.
 
 An easy-to-use web interface is provided. There is also a scripting interface for batch generation of results. 
@@ -125,6 +124,7 @@ Welcome to scan the QR code below and join the WeChat group.
 - [KAN-TTS](https://github.com/alibaba-damo-academy/KAN-TTS)
 - [StyleTTS](https://github.com/yl4579/StyleTTS)
 - [Simbert](https://github.com/ZhuiyiTechnology/simbert)
+- [cn2an](https://github.com/Ailln/cn2an). EmotiVoice incorporates cn2an for number processing.
 
 ## License
 
