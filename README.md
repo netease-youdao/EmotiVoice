@@ -72,24 +72,24 @@ We recommend that users refer to the wiki page [How to download the pretrained m
 
 ```sh
 git lfs install
-git lfs clone https://huggingface.co/WangZeJun/simbert-base-chinese WangZeJun/simbert-base-chinese
+git lfs clone https://huggingface.co/WangZeJun/simbert-base-chinese ../WangZeJun/simbert-base-chinese
 ```
 or, you can run:
 ```sh
-mkdir -p WangZeJun/simbert-base-chinese
-wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/config.json -P WangZeJun/simbert-base-chinese
-wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_model.bin -P WangZeJun/simbert-base-chinese
-wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P WangZeJun/simbert-base-chinese
+mkdir -p ../WangZeJun/simbert-base-chinese
+wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/config.json -P ../WangZeJun/simbert-base-chinese
+wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_model.bin -P ../WangZeJun/simbert-base-chinese
+wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P ../WangZeJun/simbert-base-chinese
 ```
 
 ### Inference
 
 1. You have to download the [pretrained models](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing), and run:
 ```sh
-mkdir -p outputs/style_encoder/ckpt
-mkdir -p outputs/prompt_tts_open_source_joint/ckpt
+mkdir -p ../models/style_encoder/ckpt
+mkdir -p ../models/prompt_tts_open_source_joint/ckpt
 ```
-2. And place `g_*`, `do_*` under `outputs/prompt_tts_open_source_joint/ckpt` and  put `checkpoint_*` in `outputs/style_encoder/ckpt`.
+2. And place `g_*`, `do_*` under `models/prompt_tts_open_source_joint/ckpt` and  put `checkpoint_*` in `models/style_encoder/ckpt`.
 3. The inference text format is `<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
   - inference text example: `8051|Happy|<sos/eos> [IH0] [M] [AA1] [T] engsp4 [V] [OY1] [S] engsp4 [AH0] engsp1 [M] [AH1] [L] [T] [IY0] engsp4 [V] [OY1] [S] engsp1 [AE1] [N] [D] engsp1 [P] [R] [AA1] [M] [P] [T] engsp4 [K] [AH0] [N] [T] [R] [OW1] [L] [D] engsp1 [T] [IY1] engsp4 [T] [IY1] engsp4 [EH1] [S] engsp1 [EH1] [N] [JH] [AH0] [N] . <sos/eos>|Emoti-Voice - a Multi-Voice and Prompt-Controlled T-T-S Engine`.
 4. You can get phonemes by `python frontend_en.py data/my_text.txt > data/my_text_for_tts.txt`.

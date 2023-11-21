@@ -68,9 +68,8 @@ def scan_checkpoint(cp_dir, prefix, c=8):
 @st.cache_resource
 def get_models():
     
-    am_checkpoint_path = scan_checkpoint(f'{config.output_directory}/prompt_tts_open_source_joint/ckpt', 'g_')
-
-    style_encoder_checkpoint_path = scan_checkpoint(f'{config.output_directory}/style_encoder/ckpt', 'checkpoint_', 6)#f'{config.output_directory}/style_encoder/ckpt/checkpoint_163431' 
+    am_checkpoint_path = scan_checkpoint(config.am_checkpoint_ckpt, 'g_')
+    style_encoder_checkpoint_path = scan_checkpoint(config.style_encoder_ckpt, 'checkpoint_', 6)#f'{config.output_directory}/style_encoder/ckpt/checkpoint_163431' 
 
     with open(config.model_config_path, 'r') as fin:
         conf = CONFIG.load_cfg(fin)

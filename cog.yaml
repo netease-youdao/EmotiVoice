@@ -25,18 +25,18 @@ build:
 
   # commands run after the environment is setup
   run:
-    - "mkdir -p /src/WangZeJun/simbert-base-chinese"
-    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/config.json -P /src/WangZeJun/simbert-base-chinese"
-    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_model.bin -P /src/WangZeJun/simbert-base-chinese"
-    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P /src/WangZeJun/simbert-base-chinese"
-    - "mkdir -p /src/outputs/style_encoder/ckpt"
-    - "mkdir -p /src/outputs/prompt_tts_open_source_joint/ckpt"
+    - "mkdir -p /WangZeJun/simbert-base-chinese"
+    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/config.json -P /WangZeJun/simbert-base-chinese"
+    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_model.bin -P /WangZeJun/simbert-base-chinese"
+    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P /WangZeJun/simbert-base-chinese"
+    - "mkdir -p /models/style_encoder/ckpt"
+    - "mkdir -p /models/prompt_tts_open_source_joint/ckpt"
     - >
-      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=126HKNWuQZkQQPryEYnVrOybo28Wd341V' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=126HKNWuQZkQQPryEYnVrOybo28Wd341V" -O /src/outputs/prompt_tts_open_source_joint/ckpt/do_00140000 && rm -rf /tmp/cookies.txt
+      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=126HKNWuQZkQQPryEYnVrOybo28Wd341V' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=126HKNWuQZkQQPryEYnVrOybo28Wd341V" -O /models/prompt_tts_open_source_joint/ckpt/do_00140000 && rm -rf /tmp/cookies.txt
     - >
-      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ydWqSRRygrCuvlqMJF0CsFth_WLiER0a' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ydWqSRRygrCuvlqMJF0CsFth_WLiER0a" -O /src/outputs/prompt_tts_open_source_joint/ckpt/g_00140000 && rm -rf /tmp/cookies.txt
+      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ydWqSRRygrCuvlqMJF0CsFth_WLiER0a' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ydWqSRRygrCuvlqMJF0CsFth_WLiER0a" -O /models/prompt_tts_open_source_joint/ckpt/g_00140000 && rm -rf /tmp/cookies.txt
     - >
-      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Y5KP8DUQacKZuQ_3SprQIagczTmkwIhY' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Y5KP8DUQacKZuQ_3SprQIagczTmkwIhY" -O /src/outputs/style_encoder/ckpt/checkpoint_163431 && rm -rf /tmp/cookies.txt
+      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Y5KP8DUQacKZuQ_3SprQIagczTmkwIhY' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Y5KP8DUQacKZuQ_3SprQIagczTmkwIhY" -O /models/style_encoder/ckpt/checkpoint_163431 && rm -rf /tmp/cookies.txt
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"

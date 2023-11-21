@@ -8,7 +8,7 @@ import numpy as np
 from yacs import config as CONFIG
 import torch
 import re
-import os
+import os, glob
 import soundfile as sf
 
 from frontend import g2p
@@ -18,11 +18,15 @@ from models.prompt_tts_modified.jets import JETSGenerator
 from models.prompt_tts_modified.simbert import StyleEncoder
 from transformers import AutoTokenizer
 
-import base64
-from pathlib import Path
-
 MAX_WAV_VALUE = 32768.0
 
+
+def scan_checkpoint(cp_dir, prefix, c=8):
+    pattern = os.path.join(cp_dir, prefix + '?'*c)
+    cp_list = glob.glob(pattern)
+    if len(cp_list) == 0:
+        return None
+    return sorted(cp_list)[-1]
 
 def g2p_cn(text):
     return g2p(text)
@@ -39,8 +43,8 @@ class Predictor(BasePredictor):
 
     def setup_models(self):
         config = self.config
-        am_checkpoint_path = config.output_directory + "/prompt_tts_open_source_joint/ckpt/g_00140000"
-        style_encoder_checkpoint_path = config.output_directory + "/style_encoder/ckpt/checkpoint_163431"
+        am_checkpoint_path = scan_checkpoint(config.am_encoder_ckpt, 'g_')
+        style_encoder_checkpoint_path = scan_checkpoint(config.style_encoder_ckpt, 'checkpoint_', 6)
 
         with open(config.model_config_path, 'r') as fin:
             conf = CONFIG.load_cfg(fin)
