@@ -94,6 +94,10 @@ pip install streamlit
 streamlit run demo_page.py
 ```
 
+### Wiki page
+
+You may find more information from our [wiki](https://github.com/netease-youdao/EmotiVoice/wiki) page
+
 ## Training
 
 To be released.
