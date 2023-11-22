@@ -39,7 +39,11 @@ The easiest way to try EmotiVoice is by running the docker image. You need a mac
 ```sh
 docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 ```
-
+The Docker image was updated on November 21, 2023. If you have an older version, please update it by running the following commands:
+```sh
+docker pull syq163/emoti-voice:latest
+docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
+```
 Now open your browser and navigate to http://localhost:8501 to start using EmotiVoice's powerful TTS capabilities.
 
 ### Full installation
@@ -96,7 +100,7 @@ streamlit run demo_page.py
 
 ### Wiki page
 
-You may find more information from our [wiki](https://github.com/netease-youdao/EmotiVoice/wiki) page
+You may find more information from our [wiki](https://github.com/netease-youdao/EmotiVoice/wiki) page.
 
 ## Training
 
