@@ -57,10 +57,10 @@ def preprocess_english(text):
                 phones += ["[" + ph + "]" if ph != ' ' else 'engsp1' for ph in phone]
             elif phone == " ":
                 continue
-            else:
+            elif phones:
                 phones.pop() # pop engsp1
                 phones.append("engsp4")
-    if "engsp" in phones[-1]:
+    if phones and "engsp" in phones[-1]:
         phones.pop()
 
     mark = "." if text[-1] != "?" else "?"

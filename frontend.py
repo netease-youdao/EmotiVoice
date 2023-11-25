@@ -18,12 +18,14 @@ from frontend_en import preprocess_english
 
 re_english_word = re.compile('([a-z\-\.\']+|\d+[\d\.]*)', re.I)
 def g2p_cn_en(text):
+    # Our policy dictates that if the text contains Chinese, digits are to be converted into Chinese.
     parts = re_english_word.split(text)
     tts_text = ["<sos/eos>"]
     chartype = ''
+    text_contains_chinese = contains_chinese(text)
     for part in parts:
         if part == ' ' or part == '': continue
-        if re_digits.match(part) and (chartype == 'cn' or chartype == '') or contains_chinese(part):
+        if re_digits.match(part) and (text_contains_chinese or chartype == '') or contains_chinese(part):
             if chartype == 'en':
                 tts_text.append('eng_cn_sp')
             phoneme = g2p_cn(part)
