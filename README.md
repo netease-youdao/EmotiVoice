@@ -15,7 +15,7 @@
 </div>
 <br>
 
-**EmotiVoice** is a powerful and modern open-source text-to-speech engine. EmotiVoice speaks both English and Chinese, and with over 2000 different voices. The most prominent feature is **emotional synthesis**, allowing you to create speech with a wide range of emotions, including happy, excited, sad, angry and others.
+**EmotiVoice** is a powerful and modern open-source text-to-speech engine. EmotiVoice speaks both English and Chinese, and with over 2000 different voices (refer to the [List of Voices](https://github.com/netease-youdao/EmotiVoice/wiki/😊-voice-wiki-page) for details). The most prominent feature is **emotional synthesis**, allowing you to create speech with a wide range of emotions, including happy, excited, sad, angry and others.
 
 An easy-to-use web interface is provided. There is also a scripting interface for batch generation of results. 
 
@@ -56,6 +56,8 @@ pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba p
 ```
 
 ### Prepare model files
+
+We recommend that users refer to the wiki page [How to download the pretrained model files](https://github.com/netease-youdao/EmotiVoice/wiki/Pretrained-models) if they encounter any issues.
 
 ```sh
 git lfs install
