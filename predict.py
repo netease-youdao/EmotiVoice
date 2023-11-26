@@ -11,7 +11,7 @@ import re
 import os, glob
 import soundfile as sf
 
-from frontend import g2p
+from frontend_cn import g2p_cn
 from frontend_en import preprocess_english
 from config.joint.config import Config
 from models.prompt_tts_modified.jets import JETSGenerator
@@ -27,9 +27,6 @@ def scan_checkpoint(cp_dir, prefix, c=8):
     if len(cp_list) == 0:
         return None
     return sorted(cp_list)[-1]
-
-def g2p_cn(text):
-    return g2p(text)
 
 def g2p_en(text):
     return preprocess_english(text)
@@ -151,7 +148,7 @@ class Predictor(BasePredictor):
         speaker: str = Input(
             description="speakers",
             choices=Config().speakers,
-            default="Maria_Kasper",
+            default=Config().speakers[0],
         ),
     ) -> Path:
         """Run a single prediction on the model"""
