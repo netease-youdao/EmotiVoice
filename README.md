@@ -28,7 +28,9 @@ Here are a few samples that EmotiVoice generates:
   
 - [Chinese-accent English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
 
+## Demo
 
+A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer/emotivoice).
 
 ## Waiting list
 
@@ -38,8 +40,6 @@ EmotiVoice prioritizes community input and user requests:
 - [ ] Feature: Voice Cloning with your personal data (scheduled for release early next month, with examples)
 
 We welcome your feedback!
-
-
 
 ## Quickstart
 
@@ -69,6 +69,7 @@ pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba p
 ### Prepare model files
 
 We recommend that users refer to the wiki page [How to download the pretrained model files](https://github.com/netease-youdao/EmotiVoice/wiki/Pretrained-models) if they encounter any issues.
+Note that the paths are different to upstream to ensure container is built well.
 
 ```sh
 git lfs install
