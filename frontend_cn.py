@@ -115,7 +115,7 @@ def g2p_cn(text):
             
             res_text.append(" sp0 ".join(py))
             res_text.append("sp1")
-    res_text.pop()
+    #res_text.pop()
     res_text.append("<sos/eos>")
     return " ".join(res_text)
 
