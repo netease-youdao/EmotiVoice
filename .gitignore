@@ -1,0 +1,5 @@
+outputs/
+WangZeJun/
+*.pyc
+.vscode/
+__pycache__/
