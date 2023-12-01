@@ -16,7 +16,7 @@ import re
 from frontend_cn import g2p_cn, re_digits
 from frontend_en import preprocess_english
 
-# Thanks to GoGococo and PatroxGaurab for identifying the issue: 
+# Thanks to GuGCoCo and PatroxGaurab for identifying the issue: 
 # the results differ between frontend.py and frontend_en.py. Here's a quick fix.
 re_english_word = re.compile('([a-z\-\.\'\s,;\:\!\?]+|\d+[\d\.]*)', re.I)
 def g2p_cn_en(text):

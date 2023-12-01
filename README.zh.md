@@ -110,7 +110,7 @@ streamlit run demo_page.py
 
 ### 类OpenAI TTS的API
 
-非常感谢 @lewangdev 的相关该工作 [#60](./issues/60)。通过运行如下命令来完成配置：
+非常感谢 @lewangdev 的相关该工作 [#60](../../issues/60)。通过运行如下命令来完成配置：
 
 ```sh
 pip install fastapi

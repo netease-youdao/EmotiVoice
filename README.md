@@ -109,7 +109,7 @@ streamlit run demo_page.py
 
 ### OpenAI-compatible-TTS API
 
-Thanks to @lewangdev for adding an OpenAI compatible API [#60](./issues/60). To set it up, use the following command:
+Thanks to @lewangdev for adding an OpenAI compatible API [#60](../../issues/60). To set it up, use the following command:
 
 ```sh
 pip install fastapi
