@@ -39,7 +39,9 @@ def get_style_embedding(prompt, tokenizer, style_encoder):
 
 def main(args, config):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    files = os.listdir(config.am_encoder_ckpt)
+    root_path = os.path.join(config.output_directory, args.logdir)
+    ckpt_path = os.path.join(root_path,  "ckpt")
+    files = os.listdir(ckpt_path)
     
     for file in files:
         if args.checkpoint:

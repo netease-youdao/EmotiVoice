@@ -2,13 +2,16 @@
 # https://github.com/replicate/cog/blob/main/docs/python.md
 
 from cog import BasePredictor, Input, Path
-from typing import Any
+from typing import List
 
 import numpy as np
 from yacs import config as CONFIG
 import torch
 import re
 import os, glob
+import time
+import subprocess
+import requests
 import soundfile as sf
 
 from frontend_cn import g2p_cn
@@ -20,6 +23,36 @@ from transformers import AutoTokenizer
 
 MAX_WAV_VALUE = 32768.0
 
+# url for the weights mirror
+REPLICATE_WEIGHTS_URL = "https://weights.replicate.delivery/default"
+
+# files to download from the weights mirrors
+DEFAULT_WEIGHTS = [
+    {
+        "dest": "outputs/prompt_tts_open_source_joint/ckpt",
+        "src": "EmotiVoice",
+        "files": [
+            "do_00140000",
+            "g_00140000",
+        ],
+    },
+    {
+        "dest": "outputs/style_encoder/ckpt",
+        "src": "EmotiVoice",
+        "files": [
+            "checkpoint_163431",
+        ],
+    },
+    {
+        "dest": "WangZeJun/simbert-base-chinese",
+        "src": "simbert-base-chinese/b5c82a8ab1e4bcac799620fc4d870aae087b0c71",
+        "files": [
+            "pytorch_model.bin",
+            "config.json",
+            "vocab.txt",
+        ],
+    }
+]
 
 def scan_checkpoint(cp_dir, prefix, c=8):
     pattern = os.path.join(cp_dir, prefix + '?'*c)
@@ -36,12 +69,40 @@ def contains_chinese(text):
     match = re.search(pattern, text)
     return match is not None
 
+def download_json(url: str, dest: Path):
+    res = requests.get(url, allow_redirects=True)
+    if res.status_code == 200 and res.content:
+        with dest.open("wb") as f:
+            f.write(res.content)
+    else:
+        print(f"Failed to download {url}. Status code: {res.status_code}")
+
+def download_weights(baseurl: str, basedest: str, files: List[str]):
+    """Download model weights from Replicate and save to file.
+    Weights and download locations are specified in DEFAULT_WEIGHTS
+    """
+    basedest = Path(basedest)
+    start = time.time()
+    print("downloading to: ", basedest)
+    basedest.mkdir(parents=True, exist_ok=True)
+    for f in files:
+        dest = basedest / f
+        url = os.path.join(REPLICATE_WEIGHTS_URL, baseurl, f)
+        if not dest.exists():
+            print("downloading url: ", url)
+            if dest.suffix == ".json":
+                download_json(url, dest)
+            else:
+                subprocess.check_call(["pget", url, str(dest)], close_fds=False)
+    print("downloading took: ", time.time() - start)
+
 class Predictor(BasePredictor):
 
     def setup_models(self):
         config = self.config
-        am_checkpoint_path = scan_checkpoint(config.am_encoder_ckpt, 'g_')
-        style_encoder_checkpoint_path = scan_checkpoint(config.style_encoder_ckpt, 'checkpoint_', 6)
+        am_checkpoint_path = scan_checkpoint(f'{config.output_directory}/prompt_tts_open_source_joint/ckpt', 'g_')
+
+        style_encoder_checkpoint_path = scan_checkpoint(f'{config.output_directory}/style_encoder/ckpt', 'checkpoint_', 6)
 
         with open(config.model_config_path, 'r') as fin:
             conf = CONFIG.load_cfg(fin)
@@ -77,6 +138,8 @@ class Predictor(BasePredictor):
     def setup(self) -> None:
         """Load the model into memory to make running multiple predictions efficient"""
         # self.model = torch.load("./weights.pth")
+        for weight in DEFAULT_WEIGHTS:
+            download_weights(weight["src"], weight["dest"], weight["files"])
         self.config = Config()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.setup_models()

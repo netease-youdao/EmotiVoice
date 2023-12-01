@@ -23,20 +23,8 @@ build:
     - "transformers==4.26.1"
     - "yacs==0.1.8"
 
-  # commands run after the environment is setup
   run:
-    - "mkdir -p /WangZeJun/simbert-base-chinese"
-    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/config.json -P /WangZeJun/simbert-base-chinese"
-    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_model.bin -P /WangZeJun/simbert-base-chinese"
-    - "wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P /WangZeJun/simbert-base-chinese"
-    - "mkdir -p /models/style_encoder/ckpt"
-    - "mkdir -p /models/prompt_tts_open_source_joint/ckpt"
-    - >
-      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=126HKNWuQZkQQPryEYnVrOybo28Wd341V' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=126HKNWuQZkQQPryEYnVrOybo28Wd341V" -O /models/prompt_tts_open_source_joint/ckpt/do_00140000 && rm -rf /tmp/cookies.txt
-    - >
-      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ydWqSRRygrCuvlqMJF0CsFth_WLiER0a' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ydWqSRRygrCuvlqMJF0CsFth_WLiER0a" -O /models/prompt_tts_open_source_joint/ckpt/g_00140000 && rm -rf /tmp/cookies.txt
-    - >
-      wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Y5KP8DUQacKZuQ_3SprQIagczTmkwIhY' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Y5KP8DUQacKZuQ_3SprQIagczTmkwIhY" -O /models/style_encoder/ckpt/checkpoint_163431 && rm -rf /tmp/cookies.txt
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.0.3/pget" && chmod +x /usr/local/bin/pget
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
