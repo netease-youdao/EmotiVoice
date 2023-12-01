@@ -26,7 +26,7 @@ Here are a few samples that EmotiVoice generates:
   
 - [English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/8f272eba-49db-493b-b479-2d9e5a419e26)
   
-- [Chinese-accent English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
+- [Fun Chinese English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
 
 
 
@@ -50,7 +50,7 @@ The easiest way to try EmotiVoice is by running the docker image. You need a mac
 ```sh
 docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 ```
-The Docker image was updated on November 21, 2023. If you have an older version, please update it by running the following commands:
+The Docker image was updated on November 29, 2023. If you have an older version, please update it by running the following commands:
 ```sh
 docker pull syq163/emoti-voice:latest
 docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
@@ -76,21 +76,17 @@ git lfs clone https://huggingface.co/WangZeJun/simbert-base-chinese WangZeJun/si
 ```
 or, you can run:
 ```sh
-mkdir -p WangZeJun/simbert-base-chinese
-wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/config.json -P WangZeJun/simbert-base-chinese
-wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/pytorch_model.bin -P WangZeJun/simbert-base-chinese
-wget https://huggingface.co/WangZeJun/simbert-base-chinese/resolve/main/vocab.txt -P WangZeJun/simbert-base-chinese
+git clone https://www.modelscope.cn/syq163/WangZeJun.git
 ```
 
 ### Inference
 
-1. You have to download the [pretrained models](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing), and run:
+1. You can download the [pretrained models](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing) by simply running the following command:
 ```sh
-mkdir -p outputs/style_encoder/ckpt
-mkdir -p outputs/prompt_tts_open_source_joint/ckpt
+git clone https://www.modelscope.cn/syq163/outputs.git
 ```
-2. And place `g_*`, `do_*` under `outputs/prompt_tts_open_source_joint/ckpt` and  put `checkpoint_*` in `outputs/style_encoder/ckpt`.
-3. The inference text format is `<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
+2. The inference text format is `<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
+
   - inference text example: `8051|Happy|<sos/eos> [IH0] [M] [AA1] [T] engsp4 [V] [OY1] [S] engsp4 [AH0] engsp1 [M] [AH1] [L] [T] [IY0] engsp4 [V] [OY1] [S] engsp1 [AE1] [N] [D] engsp1 [P] [R] [AA1] [M] [P] [T] engsp4 [K] [AH0] [N] [T] [R] [OW1] [L] [D] engsp1 [T] [IY1] engsp4 [T] [IY1] engsp4 [EH1] [S] engsp1 [EH1] [N] [JH] [AH0] [N] . <sos/eos>|Emoti-Voice - a Multi-Voice and Prompt-Controlled T-T-S Engine`.
 4. You can get phonemes by `python frontend_en.py data/my_text.txt > data/my_text_for_tts.txt`.
 
@@ -109,6 +105,17 @@ the synthesized speech is under `outputs/prompt_tts_open_source_joint/test_audio
 ```sh
 pip install streamlit
 streamlit run demo_page.py
+```
+
+### OpenAI-compatible-TTS API
+
+Thanks to @lewangdev for adding an OpenAI compatible API [#60](./issues/60). To set it up, use the following command:
+
+```sh
+pip install fastapi
+pip install pydub
+pip install uvicorn[standard]
+uvicorn openaiapi:app --reload
 ```
 
 ### Wiki page

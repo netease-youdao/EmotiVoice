@@ -28,6 +28,14 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
   
 - [Fun Chinese English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
 
+## 功能心愿列表
+
+易魔声倾听社区需求并积极响应，包含但不限于：
+
+- [ ] [HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API): 更稳定，更快，更多的音色——无需任何安装配置！（2023年12月早些时间推出）
+- [ ] 用你自己的数据定制音色（2023年12月早些时间推出）
+
+我们期待你的反馈！
 
 ## 快速入门
 
@@ -36,6 +44,12 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
 尝试EmotiVoice最简单的方法是运行docker镜像。你需要一台带有NVidia GPU的机器。先按照[Linux](https://www.server-world.info/en/note?os=Ubuntu_22.04&p=nvidia&f=2)和[Windows WSL2](https://zhuanlan.zhihu.com/p/653173679)平台的说明安装NVidia容器工具包。然后可以直接运行EmotiVoice镜像：
 
 ```sh
+docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
+```
+
+Docker镜像更新于2023年11月29号。如果你使用了老的版本，推荐运行如下命令进行更新：
+```sh
+docker pull syq163/emoti-voice:latest
 docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 ```
 
@@ -52,22 +66,28 @@ pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba p
 
 ### 准备模型文件
 
+强烈推荐用户参考[如何下载预训练模型文件](https://github.com/netease-youdao/EmotiVoice/wiki/Pretrained-models)的维基页面，尤其遇到问题时。
+
 ```sh
 git lfs install
 git lfs clone https://huggingface.co/WangZeJun/simbert-base-chinese WangZeJun/simbert-base-chinese
 ```
 
-### 推理
-
-1. 下载[预训练模型](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing), 然后运行:
-
+或者你可以运行:
 ```sh
-mkdir -p outputs/style_encoder/ckpt
-mkdir -p outputs/prompt_tts_open_source_joint/ckpt
+git clone https://www.modelscope.cn/syq163/WangZeJun.git
 ```
 
-2. 将`g_*`, `do_*`文件放到`outputs/prompt_tts_open_source_joint/ckpt`，将`checkpoint_*`放到`outputs/style_encoder/ckpt`中.
-3. 推理输入文本格式是：`<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
+### 推理
+
+1. 通过简单运行如下命令来下载[预训练模型](https://drive.google.com/drive/folders/1y6Xwj_GG9ulsAonca_unSGbJ4lxbNymM?usp=sharing):
+
+```sh
+git clone https://www.modelscope.cn/syq163/outputs.git
+```
+
+2. 推理输入文本格式是：`<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
+
   - 例如: `8051|非常开心|<sos/eos>  uo3 sp1 l ai2 sp0 d ao4 sp1 b ei3 sp0 j ing1 sp3 q ing1 sp0 h ua2 sp0 d a4 sp0 x ve2 <sos/eos>|我来到北京，清华大学`.
 4. 其中的音素（phonemes）可以这样得到：`python frontend.py data/my_text.txt > data/my_text_for_tts.txt`.
 
@@ -87,6 +107,21 @@ python inference_am_vocoder_joint.py \
 pip install streamlit
 streamlit run demo_page.py
 ```
+
+### 类OpenAI TTS的API
+
+非常感谢 @lewangdev 的相关该工作 [#60](./issues/60)。通过运行如下命令来完成配置：
+
+```sh
+pip install fastapi
+pip install pydub
+pip install uvicorn[standard]
+uvicorn openaiapi:app --reload
+```
+
+### Wiki页面
+
+如果遇到问题，或者想获取更多详情，请参考 [wiki](https://github.com/netease-youdao/EmotiVoice/wiki) 页面。
 
 ## 训练
 
