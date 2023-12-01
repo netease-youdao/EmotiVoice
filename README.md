@@ -28,7 +28,9 @@ Here are a few samples that EmotiVoice generates:
   
 - [Fun Chinese English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
 
+## Demo
 
+A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer/emotivoice).
 
 ## Waiting list
 

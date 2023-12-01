@@ -1,0 +1,30 @@
+# Configuration for Cog ⚙️
+# Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
+
+build:
+  gpu: true
+
+  # a list of ubuntu apt packages to install
+  # system_packages:
+  #   - "libgl1-mesa-glx"
+  #   - "libglib2.0-0"
+
+  python_version: "3.8"
+  python_packages:
+    - "torch==2.0.1"
+    - "torchaudio==2.0.2"
+    - "g2p-en==2.1.0"
+    - "jieba==0.42.1"
+    - "numba==0.58.1"
+    - "numpy==1.24.4"
+    - "pypinyin==0.49.0"
+    - "scipy==1.10.1"
+    - "soundfile==0.12.1"
+    - "transformers==4.26.1"
+    - "yacs==0.1.8"
+
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.0.3/pget" && chmod +x /usr/local/bin/pget
+
+# predict.py defines how predictions are run on your model
+predict: "predict.py:Predictor"
