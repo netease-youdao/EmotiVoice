@@ -20,8 +20,6 @@ from cn2an.an2cn import An2Cn
 
 re_special_pinyin = re.compile(r'^(n|ng|m)$')
 def split_py(py):
-    if len(py) == 0:
-        return "", ""
     tone = py[-1]
     py = py[:-1]
     sm = ""
@@ -29,7 +27,7 @@ def split_py(py):
     suf_r = ""
     if re_special_pinyin.match(py):
         py = 'e' + py
-    if len(py) != 0 and py[-1] == 'r':
+    if py[-1] == 'r':
         suf_r = 'r'
         py = py[:-1]
     if py == 'zi' or py == 'ci' or py == 'si' or py == 'ri':
@@ -50,7 +48,7 @@ def split_py(py):
     elif py == 'wu':
         sm = ""
         ym = "u"
-    elif len(py) != 0 and py[0] == 'w':
+    elif py[0] == 'w':
         sm = ""
         ym = "u" + py[1:]
     elif len(py) >= 2 and (py[0] == 'j' or py[0] == 'q' or py[0] == 'x') and py[1] == 'u':
@@ -58,17 +56,16 @@ def split_py(py):
         ym = 'v' + py[2:]
     else:
         seg_pos = re.search('a|e|i|o|u|v', py)
-        if seg_pos is not None:
-            sm = py[:seg_pos.start()]
-            ym = py[seg_pos.start():]
-            if ym == 'ui':
-                ym = 'uei'
-            elif ym == 'iu':
-                ym = 'iou'
-            elif ym == 'un':
-                ym = 'uen'
-            elif ym == 'ue':
-                ym = 've'
+        sm = py[:seg_pos.start()]
+        ym = py[seg_pos.start():]
+        if ym == 'ui':
+            ym = 'uei'
+        elif ym == 'iu':
+            ym = 'iou'
+        elif ym == 'un':
+            ym = 'uen'
+        elif ym == 'ue':
+            ym = 've'
     ym += suf_r + tone
     return sm, ym
 
@@ -118,7 +115,7 @@ def g2p_cn(text):
             
             res_text.append(" sp0 ".join(py))
             res_text.append("sp1")
-    res_text.pop()
+    #res_text.pop()
     res_text.append("<sos/eos>")
     return " ".join(res_text)
 

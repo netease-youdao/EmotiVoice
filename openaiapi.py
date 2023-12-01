@@ -1,4 +1,3 @@
-import dotenv
 import logging
 import os
 import io
@@ -19,7 +18,6 @@ from yacs import config as CONFIG
 from config.joint.config import Config
 
 LOGGER = logging.getLogger(__name__)
-dotenv.load_dotenv()
 
 DEFAULTS = {
 }
@@ -147,15 +145,15 @@ speakers = config.speakers
 models = get_models()
 app = FastAPI()
 
-
+from typing import Optional
 class SpeechRequest(BaseModel):
     input: str
     voice: str = '8051'
-    prompt: str | None = ''
-    language: str | None = 'zh_us'
-    model: str | None = 'emoti-voice'
-    response_format: str | None = 'mp3'
-    speed: float | None = 1.0
+    prompt: Optional[str] = ''
+    language: Optional[str] = 'zh_us'
+    model: Optional[str] = 'emoti-voice'
+    response_format: Optional[str] = 'mp3'
+    speed: Optional[float] = 1.0
 
 
 @app.post("/v1/audio/speech")
@@ -166,7 +164,7 @@ def text_to_speech(speechRequest: SpeechRequest):
                               speechRequest.input, speechRequest.voice,
                               models)
     wav_buffer = io.BytesIO()
-    sf.write(wav_buffer, data=np_audio,
+    sf.write(file=wav_buffer, data=np_audio,
              samplerate=config.sampling_rate, format='WAV')
     buffer = wav_buffer
     response_format = speechRequest.response_format
