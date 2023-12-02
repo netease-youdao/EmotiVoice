@@ -1,4 +1,4 @@
-torch==1.11.0
+torch
 torchaudio
 numpy
 numba
