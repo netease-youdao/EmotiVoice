@@ -32,16 +32,12 @@ Here are a few samples that EmotiVoice generates:
 
 A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer/emotivoice).
 
-## Waiting list
-
-EmotiVoice prioritizes community input and user requests:
+## Features under development
 
 - [ ] [HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API): Improved stability, enhanced speed, and potentially expanded voice options (planned for release early next month, alongside documentation)
-- [ ] Feature: Voice Cloning with your personal data (scheduled for release early next month, with examples)
+- [ ] Voice Cloning with your personal data (scheduled for release early next month, with examples)
 
-We welcome your feedback!
-
-
+EmotiVoice prioritizes community input and user requests. We welcome your feedback!
 
 ## Quickstart
 
