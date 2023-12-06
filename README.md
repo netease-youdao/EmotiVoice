@@ -34,8 +34,8 @@ A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer
 
 ## Features under development
 
-- [ ] [HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API): Improved stability, enhanced speed, and potentially expanded voice options (planned for release early next month, alongside documentation)
-- [ ] Voice Cloning with your personal data (scheduled for release early next month, with examples)
+- [x] [The EmotiVoice HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) was release on December 6th, 2023. Easier to start, faster to use, and with **over 13,000 free calls**. Additionally, users can explore more captivating voices provided by [Zhiyun](https://ai.youdao.com/).
+- [ ] Voice Cloning with your personal data (scheduled for release early this month, with examples)
 
 EmotiVoice prioritizes community input and user requests. We welcome your feedback!
 

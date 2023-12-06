@@ -28,14 +28,12 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
   
 - [Fun Chinese English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
 
-## 功能心愿列表
+## 开发中的特性
 
-易魔声倾听社区需求并积极响应，包含但不限于：
-
-- [ ] [HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API): 更稳定，更快，更多的音色——无需任何安装配置！（2023年12月早些时间推出）
+- [x] [易魔声 HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) 已于2023年12月6日发布上线。更易上手（无需任何安装配置），更快更稳定，单账户提供**超过 13,000 次免费调用**。此外，用户还可以使用[智云](https://ai.youdao.com/)提供的其它迷人的声音。
 - [ ] 用你自己的数据定制音色（2023年12月早些时间推出）
 
-我们期待你的反馈！
+易魔声倾听社区需求并积极响应，期待您的反馈！
 
 ## 快速入门
 
