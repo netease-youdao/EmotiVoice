@@ -19,7 +19,7 @@ from yacs import config as CONFIG
 import torch
 import re
 
-from frontend import g2p_cn_en
+from frontend import g2p_cn_en, ROOT_DIR, read_lexicon, G2p
 from config.joint.config import Config
 from models.prompt_tts_modified.jets import JETSGenerator
 from models.prompt_tts_modified.simbert import StyleEncoder
@@ -151,8 +151,9 @@ def tts(name, text, prompt, content, speaker, models):
 
 speakers = config.speakers
 models = get_models()
+lexicon = read_lexicon(f"{ROOT_DIR}/lexicon/librispeech-lexicon.txt")
+g2p = G2p()
 
-re_english_word = re.compile('([a-z\d\-\.\']+)', re.I)
 def new_line(i):
     col1, col2, col3, col4 = st.columns([1.5, 1.5, 3.5, 1.3])
     with col1:
@@ -166,7 +167,7 @@ def new_line(i):
 
     flag = st.button(f"Synthesize (合成)", key=f"{i}_button1")
     if flag:
-        text =  g2p_cn_en(content)
+        text =  g2p_cn_en(content, g2p, lexicon)
         path = tts(i, text, prompt, content, speaker, models)
         st.audio(path, sample_rate=config.sampling_rate)
 

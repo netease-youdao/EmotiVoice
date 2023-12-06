@@ -35,26 +35,35 @@ def read_lexicon(lex_path):
                 lexicon[word.lower()] = phones
     return lexicon
 
-def preprocess_english(text):
-    lexicon = read_lexicon(f"{ROOT_DIR}/lexicon/librispeech-lexicon.txt")
-
-    g2p = G2p()
+def get_eng_phoneme(text, g2p, lexicon):
+    """
+    english g2p
+    """
+    filters = {",", " ", "'"}
     phones = []
     words = list(filter(lambda x: x not in {"", " "}, re.split(r"([,;.\-\?\!\s+])", text)))
 
     for w in words:
         if w.lower() in lexicon:
-            phones += [
-                "[" + ph + "]" 
-                for ph in lexicon[w.lower()]
-            ]+["engsp1"]
+            
+            for ph in lexicon[w.lower()]:
+                if ph not in filters:
+                    phones += ["[" + ph + "]"]
+
+            if "sp" not in phones[-1]:
+                phones += ["engsp1"]
         else:
             phone=g2p(w)
             if not phone:
                 continue
 
             if phone[0].isalnum():
-                phones += ["[" + ph + "]" if ph != ' ' else 'engsp1' for ph in phone]
+                
+                for ph in phone:
+                    if ph not in filters:
+                        phones += ["[" + ph + "]"]
+                    if ph == " " and "sp" not in phones[-1]:
+                        phones += ["engsp1"]
             elif phone == " ":
                 continue
             elif phones:
@@ -63,13 +72,15 @@ def preprocess_english(text):
     if phones and "engsp" in phones[-1]:
         phones.pop()
 
-    mark = "." if text[-1] != "?" else "?"
-    phones = ["<sos/eos>"] + phones + [mark, "<sos/eos>"]
+    # mark = "." if text[-1] != "?" else "?"
+    # phones = ["<sos/eos>"] + phones + [mark, "<sos/eos>"]
     return " ".join(phones)
     
 
 if __name__ == "__main__":
-    phonemes= preprocess_english("Happy New Year")
+    lexicon = read_lexicon(f"{ROOT_DIR}/lexicon/librispeech-lexicon.txt")
+    g2p = G2p()
+    phonemes= get_eng_phoneme("Happy New Year", g2p, lexicon)
     import sys
     from os.path import isfile
     if len(sys.argv) < 2:
@@ -79,6 +90,6 @@ if __name__ == "__main__":
     if isfile(text_file):
         fp = open(text_file, 'r')
         for line in fp:
-            phoneme=preprocess_english(line.rstrip())
+            phoneme=get_eng_phoneme(line.rstrip(), g2p, lexicon)
             print(phoneme)
         fp.close()
