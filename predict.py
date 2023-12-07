@@ -116,7 +116,7 @@ class Predictor(BasePredictor):
         for key, value in model_CKPT['model'].items():
             new_key = key[7:]
             model_ckpt[new_key] = value
-        style_encoder.load_state_dict(model_ckpt)
+        style_encoder.load_state_dict(model_ckpt, strict=False)
         generator = JETSGenerator(conf).to(self.device)
 
         model_CKPT = torch.load(am_checkpoint_path, map_location=self.device)

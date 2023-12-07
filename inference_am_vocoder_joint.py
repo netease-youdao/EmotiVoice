@@ -63,7 +63,7 @@ def main(args, config):
         for key, value in model_CKPT['model'].items():
             new_key = key[7:]
             model_ckpt[new_key] = value
-        style_encoder.load_state_dict(model_ckpt)
+        style_encoder.load_state_dict(model_ckpt, strict=False)
 
 
 

@@ -36,14 +36,14 @@ class JETSGenerator(nn.Module):
 
         self.generator = HiFiGANGenerator(config.model)
 
-        try:
-            model_CKPT = torch.load(config.pretrained_am, map_location="cpu")
-            self.am.load_state_dict(model_CKPT['model'])
-            state_dict_g = torch.load(config.pretrained_vocoder,map_location="cpu")
-            self.generator.load_state_dict(state_dict_g['generator'])
-            print("pretrained generator is loaded")
-        except:
-            print("pretrained generator is not loaded for training")
+        # try:
+        #     model_CKPT = torch.load(config.pretrained_am, map_location="cpu")
+        #     self.am.load_state_dict(model_CKPT['model'])
+        #     state_dict_g = torch.load(config.pretrained_vocoder,map_location="cpu")
+        #     self.generator.load_state_dict(state_dict_g['generator'])
+        #     print("pretrained generator is loaded")
+        # except:
+        #     print("pretrained generator is not loaded for training")
         self.config=config
 
 

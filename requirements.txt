@@ -3,7 +3,7 @@ torchaudio
 numpy
 numba
 scipy
-transformers==4.26.1
+transformers
 soundfile
 yacs
 g2p_en

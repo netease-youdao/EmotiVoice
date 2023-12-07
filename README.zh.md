@@ -59,7 +59,7 @@ docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 conda create -n EmotiVoice python=3.8 -y
 conda activate EmotiVoice
 pip install torch torchaudio
-pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba pypinyin
+pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin
 ```
 
 ### 准备模型文件
