@@ -7,7 +7,7 @@ import glob
 from fastapi import FastAPI, Response
 from pydantic import BaseModel
 
-from frontend import g2p_cn_en
+from frontend import g2p_cn_en, ROOT_DIR, read_lexicon, G2p
 from models.prompt_tts_modified.jets import JETSGenerator
 from models.prompt_tts_modified.simbert import StyleEncoder
 from transformers import AutoTokenizer
@@ -144,6 +144,8 @@ def emotivoice_tts(text, prompt, content, speaker, models):
 speakers = config.speakers
 models = get_models()
 app = FastAPI()
+lexicon = read_lexicon(f"{ROOT_DIR}/lexicon/librispeech-lexicon.txt")
+g2p = G2p()
 
 from typing import Optional
 class SpeechRequest(BaseModel):
@@ -159,7 +161,7 @@ class SpeechRequest(BaseModel):
 @app.post("/v1/audio/speech")
 def text_to_speech(speechRequest: SpeechRequest):
 
-    text = g2p_cn_en(speechRequest.input)
+    text = g2p_cn_en(speechRequest.input, g2p, lexicon)
     np_audio = emotivoice_tts(text, speechRequest.prompt,
                               speechRequest.input, speechRequest.voice,
                               models)
