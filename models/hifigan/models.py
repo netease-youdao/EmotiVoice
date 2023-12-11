@@ -7,7 +7,10 @@ import torch
 import torch.nn.functional as F
 import torch.nn as nn
 from torch.nn import Conv1d, ConvTranspose1d, AvgPool1d, Conv2d
-from torch.nn.utils.parametrizations import weight_norm
+try:
+    from torch.nn.utils.parametrizations import weight_norm
+except:
+    from torch.nn.utils import weight_norm
 from torch.nn.utils import remove_weight_norm, spectral_norm
 
 LRELU_SLOPE = 0.1
