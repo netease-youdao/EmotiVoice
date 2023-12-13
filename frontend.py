@@ -41,7 +41,7 @@ def g2p_cn_en(text, g2p, lexicon):
                     ""
                 else:
                     tts_text.append('cn_eng_sp')
-            phoneme = get_eng_phoneme(part, g2p, lexicon).split()
+            phoneme = get_eng_phoneme(part, g2p, lexicon, False).split()
             if not phoneme :
                 # tts_text.pop()
                 continue

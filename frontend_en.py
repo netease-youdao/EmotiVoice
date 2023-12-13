@@ -35,7 +35,7 @@ def read_lexicon(lex_path):
                 lexicon[word.lower()] = phones
     return lexicon
 
-def get_eng_phoneme(text, g2p, lexicon):
+def get_eng_phoneme(text, g2p, lexicon, pad_sos_eos=True):
     """
     english g2p
     """
@@ -73,7 +73,8 @@ def get_eng_phoneme(text, g2p, lexicon):
         phones.pop()
 
     # mark = "." if text[-1] != "?" else "?"
-    # phones = ["<sos/eos>"] + phones + [mark, "<sos/eos>"]
+    if pad_sos_eos:
+        phones = ["<sos/eos>"] + phones + ["<sos/eos>"]
     return " ".join(phones)
     
 

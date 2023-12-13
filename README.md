@@ -86,7 +86,7 @@ git clone https://www.modelscope.cn/syq163/outputs.git
 2. The inference text format is `<speaker>|<style_prompt/emotion_prompt/content>|<phoneme>|<content>`. 
 
   - inference text example: `8051|Happy|<sos/eos> [IH0] [M] [AA1] [T] engsp4 [V] [OY1] [S] engsp4 [AH0] engsp1 [M] [AH1] [L] [T] [IY0] engsp4 [V] [OY1] [S] engsp1 [AE1] [N] [D] engsp1 [P] [R] [AA1] [M] [P] [T] engsp4 [K] [AH0] [N] [T] [R] [OW1] [L] [D] engsp1 [T] [IY1] engsp4 [T] [IY1] engsp4 [EH1] [S] engsp1 [EH1] [N] [JH] [AH0] [N] . <sos/eos>|Emoti-Voice - a Multi-Voice and Prompt-Controlled T-T-S Engine`.
-4. You can get phonemes by `python frontend_en.py data/my_text.txt > data/my_text_for_tts.txt`.
+4. You can get phonemes by `python frontend.py data/my_text.txt > data/my_text_for_tts.txt`.
 
 5. Then run:
 ```sh
