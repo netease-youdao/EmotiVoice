@@ -31,7 +31,7 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
 ## 开发中的特性
 
 - [x] [易魔声 HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) 已于2023年12月6日发布上线。更易上手（无需任何安装配置），更快更稳定，单账户提供**超过 13,000 次免费调用**。此外，用户还可以使用[智云](https://ai.youdao.com/)提供的其它迷人的声音。
-- [x] [用你自己的数据定制音色](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data)已于2023年12月13日发布上线，同时提供了两个教程示例：[DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/data/DataBaker)  [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/data/LJspeech)。
+- [x] [用你自己的数据定制音色](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data)已于2023年12月13日发布上线，同时提供了两个教程示例：[DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/DataBaker)  [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/LJspeech)。
 
 易魔声倾听社区需求并积极响应，期待您的反馈！
 
