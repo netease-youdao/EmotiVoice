@@ -77,12 +77,12 @@ class Config:
     lr_warmup_steps     = 4000
     kl_warmup_steps     = 60_000
     grad_clip_thresh    = 1.0
-    batch_size          = 16
+    batch_size          = 8
     train_steps         = 10_000_000
     opt_level           = "O1"
     seed                = 1234
     iters_per_validation= 1000
-    iters_per_checkpoint= 10000
+    iters_per_checkpoint= 5000
 
 
     #### Audio ####
