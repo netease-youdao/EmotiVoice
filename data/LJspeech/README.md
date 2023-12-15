@@ -170,7 +170,7 @@ Training tips:
 tensorboard --logdir=exp/LJspeech
 ```
 - The model checkpoints are saved at `exp/LJspeech/ckpt`.
-- The bert features are extracted in the first epoch and saved in `tmp/` folder, you can change the path in `exp/LJspeech/config/config.py`.
+- The bert features are extracted in the first epoch and saved in `exp/LJspeech/tmp/` folder, you can change the path in `exp/LJspeech/config/config.py`.
 
 
 ### Step5 Inference

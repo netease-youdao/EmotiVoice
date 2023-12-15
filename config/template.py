@@ -33,6 +33,7 @@ class Config:
     #### PATH ####
     ROOT_DIR            = os.path.dirname(os.path.abspath("__file__"))
     DATA_DIR            = ROOT_DIR + "/<DATA_DIR>"
+    # Change datalist.jsonl to datalist_mfa.jsonl if you have run MFA
     train_data_path     = DATA_DIR + "/train/datalist.jsonl"
     valid_data_path     = DATA_DIR + "/valid/datalist.jsonl"
     output_directory    = ROOT_DIR + "/<EXP_DIR>"
@@ -44,7 +45,7 @@ class Config:
     bert_path           = 'WangZeJun/simbert-base-chinese'
     token_list_path     = ROOT_DIR + "/<INFO_DIR>/tokenlist"
     style_encoder_ckpt  = ROOT_DIR + "/outputs/style_encoder/ckpt/checkpoint_163431"
-    tmp_dir             = ROOT_DIR + "/tmp"
+    tmp_dir             = output_directory + "/tmp"
     model_config_path   = ROOT_DIR + "/config/joint/config.yaml"
 
     #### Model ####
