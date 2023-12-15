@@ -10,15 +10,16 @@ The plan is to finish 0.2 to 0.4 in Q4 2023.
 ## EmotiVoice 0.4
 
 - [ ] Updated model with potentially improved quality.
-- [ ] If time allows, release training code to support fine-tuning using your own data.
-
-## EmotiVoice 0.3
-
 - [ ] First version of desktop application.
 - [ ] Support longer text.
-- [ ] Documentation: wiki page for hardware requirements. [#30](../../issues/30)
 
-## EmotiVoice 0.2
+## EmotiVoice 0.3 (2023.12.13)
+
+- [x] Release [The EmotiVoice HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) provided by [Zhiyun](https://mp.weixin.qq.com/s/_Fbj4TI4ifC6N7NFOUrqKQ).
+- [x] Release [Voice Cloning with your personal data](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data) along with [DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/DataBaker) and [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/LJspeech).
+- [x] Documentation: wiki page for hardware requirements. [#30](../../issues/30)
+
+## EmotiVoice 0.2 (2023.11.17)
 
 - [x] Support mixed Chinese and English input text. [#28](../../issues/28)
 - [x] Resolve bugs related to certain modal particles, to make it more robust. [#18](../../issues/18)

@@ -123,7 +123,7 @@ uvicorn openaiapi:app --reload
 
 ## 训练
 
-待推出。
+[用你自己的数据定制音色](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data)已于2023年12月13日发布上线。
 
 ## 路线图和未来的工作
 

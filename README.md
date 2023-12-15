@@ -122,7 +122,7 @@ You may find more information from our [wiki](https://github.com/netease-youdao/
 
 ## Training
 
-To be released.
+[Voice Cloning with your personal data](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data) has been released on December 13th, 2023.
 
 
 ## Roadmap & Future work

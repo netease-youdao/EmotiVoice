@@ -40,6 +40,8 @@ mkdir data/DataBaker/raw
 
 ### Step1 Preprocess Data
 
+For this recipe, since DataBaker has already provided phoneme labels, we will simply utilize that information.
+
 ```bash
 # format data
 python data/DataBaker/src/step1_clean_raw_data.py \
@@ -50,15 +52,13 @@ python data/DataBaker/src/step2_get_phoneme.py \
 --data_dir data/DataBaker
 ```
 
-If you want to get phonemes from the TTS frontend, then run:
-```bash
-# get phoneme
-python data/DataBaker/src/step2_get_phoneme.py \
---data_dir data/DataBaker \
---generate_phoneme True
-```
+If you have prepared your own data with only text labels, you can obtain phonemes using the Text-to-Speech (TTS) frontend. For example, you can run the following command: `python data/DataBaker/src/step2_get_phoneme.py --data_dir data/DataBaker --generate_phoneme True`. However, please note that in this specific DataBaker's recipe, you should omit this command.
+
+
 
 ### Step2 Run MFA (Optional, since we already have labeled prosody)
+
+Please be aware that in this particular DataBaker's recipe, **you should skip this step**. Nonetheless, if you have already prepared your own data with only text labels, the following commands might assist you:
 
 ```bash
 # MFA environment install
@@ -174,7 +174,7 @@ Training tips:
 tensorboard --logdir=exp/DataBaker
 ```
 - The model checkpoints are saved at `exp/DataBaker/ckpt`.
-- The bert features are extracted in the first epoch and saved in `tmp/` folder, you can change the path in `exp/DataBaker/config/config.py`.
+- The bert features are extracted in the first epoch and saved in `exp/DataBaker/tmp/` folder, you can change the path in `exp/DataBaker/config/config.py`.
 
 
 ### Step5 Inference
@@ -187,6 +187,6 @@ python inference_am_vocoder_exp.py \
 --checkpoint g_00010000 \
 --test_file $TEXT
 ```
-__Please change the speaker name in the `data/inference/text`__
+__Please change the speaker names in the `data/inference/text`__
 
 the synthesized speech is under `exp/DataBaker/test_audio`.
