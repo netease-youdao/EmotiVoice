@@ -15,7 +15,7 @@
 </div>
 <br>
 
-**EmotiVoice** is a powerful and modern open-source text-to-speech engine. EmotiVoice speaks both English and Chinese, and with over 2000 different voices (refer to the [List of Voices](https://github.com/netease-youdao/EmotiVoice/wiki/😊-voice-wiki-page) for details). The most prominent feature is **emotional synthesis**, allowing you to create speech with a wide range of emotions, including happy, excited, sad, angry and others.
+**EmotiVoice** is a powerful and modern open-source text-to-speech engine that is available to you at no cost. EmotiVoice speaks both English and Chinese, and with over 2000 different voices (refer to the [List of Voices](https://github.com/netease-youdao/EmotiVoice/wiki/😊-voice-wiki-page) for details). The most prominent feature is **emotional synthesis**, allowing you to create speech with a wide range of emotions, including happy, excited, sad, angry and others.
 
 An easy-to-use web interface is provided. There is also a scripting interface for batch generation of results. 
 
