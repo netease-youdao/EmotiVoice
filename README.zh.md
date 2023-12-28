@@ -15,8 +15,7 @@
 </div>
 <br>
 
-
-**EmotiVoice**是一个强大的开源TTS引擎，支持中英文双语，包含2000多种不同的音色，以及特色的**情感合成**功能，支持合成包含快乐、兴奋、悲伤、愤怒等广泛情感的语音。
+**EmotiVoice**是一个强大的开源TTS引擎，**完全免费**，支持中英文双语，包含2000多种不同的音色，以及特色的**情感合成**功能，支持合成包含快乐、兴奋、悲伤、愤怒等广泛情感的语音。
 
 EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果的脚本接口。
 
@@ -28,10 +27,16 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
   
 - [Fun Chinese English audio sample](https://github.com/netease-youdao/EmotiVoice/assets/3909232/a0709012-c3ef-4182-bb0e-b7a2ba386f1c)
 
-## 开发中的特性
+## 热闻速递
 
+- [x] [Mac版一键安装包](https://github.com/netease-youdao/EmotiVoice/releases/download/v0.3/emotivoice-1.0.0-arm64.dmg) 已于2023年12月28日发布，**强烈推荐尽快下载使用，免费好用！**
 - [x] [易魔声 HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) 已于2023年12月6日发布上线。更易上手（无需任何安装配置），更快更稳定，单账户提供**超过 13,000 次免费调用**。此外，用户还可以使用[智云](https://ai.youdao.com/)提供的其它迷人的声音。
 - [x] [用你自己的数据定制音色](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data)已于2023年12月13日发布上线，同时提供了两个教程示例：[DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/DataBaker)  [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/LJspeech)。
+
+## 开发中的特性
+
+- [ ] 支持调语速功能 #67 #77
+- [ ] 更多语言支持，例如日韩 #19 #22
 
 易魔声倾听社区需求并积极响应，期待您的反馈！
 

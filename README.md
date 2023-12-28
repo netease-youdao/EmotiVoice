@@ -32,10 +32,17 @@ Here are a few samples that EmotiVoice generates:
 
 A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer/emotivoice).
 
+## Hot News
+
+- [x] [The EmotiVoice app for Mac](https://github.com/netease-youdao/EmotiVoice/releases/download/v0.3/emotivoice-1.0.0-arm64.dmg) was released on December 28th, 2023. Just download and taste EmotiVoice's offerings!
+
+- [x] [The EmotiVoice HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) was released on December 6th, 2023. Easier to start, faster to use, and with **over 13,000 free calls**. Additionally, users can explore more captivating voices provided by [Zhiyun](https://ai.youdao.com/).
+- [x] [Voice Cloning with your personal data](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data) has been released on December 13th, 2023, along with [DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/DataBaker) and [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/LJspeech). 
+
 ## Features under development
 
-- [x] [The EmotiVoice HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) was release on December 6th, 2023. Easier to start, faster to use, and with **over 13,000 free calls**. Additionally, users can explore more captivating voices provided by [Zhiyun](https://ai.youdao.com/).
-- [x] [Voice Cloning with your personal data](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data) has been released on December 13th, 2023, along with [DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/DataBaker) and [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/LJspeech). 
+- [ ] Support for tuning voice speed. #67 #77 
+- [ ] Support for more languages, such as Japanese and Korean. #19 #22
 
 EmotiVoice prioritizes community input and user requests. We welcome your feedback!
 
