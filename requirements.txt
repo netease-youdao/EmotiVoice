@@ -9,4 +9,5 @@ yacs
 g2p_en
 jieba
 pypinyin
+pypinyin_dict
 streamlit
