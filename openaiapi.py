@@ -13,6 +13,7 @@ from models.prompt_tts_modified.simbert import StyleEncoder
 from transformers import AutoTokenizer
 import numpy as np
 import soundfile as sf
+import pyrubberband as pyrb
 from pydub import AudioSegment
 from yacs import config as CONFIG
 from config.joint.config import Config
@@ -165,8 +166,11 @@ def text_to_speech(speechRequest: SpeechRequest):
     np_audio = emotivoice_tts(text, speechRequest.prompt,
                               speechRequest.input, speechRequest.voice,
                               models)
+    y_stretch = np_audio
+    if speechRequest.speed != 1.0:
+        y_stretch = pyrb.time_stretch(np_audio, config.sampling_rate, speechRequest.speed)
     wav_buffer = io.BytesIO()
-    sf.write(file=wav_buffer, data=np_audio,
+    sf.write(file=wav_buffer, data=y_stretch,
              samplerate=config.sampling_rate, format='WAV')
     buffer = wav_buffer
     response_format = speechRequest.response_format
