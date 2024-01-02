@@ -171,9 +171,8 @@ def text_to_speech(speechRequest: SpeechRequest):
     buffer = wav_buffer
     response_format = speechRequest.response_format
     if response_format != 'wav':
-        wav_audio = AudioSegment(
-            wav_buffer.getvalue(), frame_rate=config.sampling_rate,
-            sample_width=2, channels=1)
+        wav_audio = AudioSegment.from_wav(wav_buffer)
+        wav_audio.frame_rate=config.sampling_rate
         buffer = io.BytesIO()
         wav_audio.export(buffer, format=response_format)
 
