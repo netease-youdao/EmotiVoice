@@ -17,7 +17,8 @@ from pypinyin import pinyin, lazy_pinyin, Style
 import jieba
 import string
 from cn2an.an2cn import An2Cn
-
+from pypinyin_dict.phrase_pinyin_data import cc_cedict
+cc_cedict.load()
 re_special_pinyin = re.compile(r'^(n|ng|m)$')
 def split_py(py):
     tone = py[-1]
