@@ -29,14 +29,14 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
 
 ## 热闻速递
 
+- [x] 类OpenAI TTS的API已经支持调语速功能，感谢 [@john9405](https://github.com/john9405). [#90](https://github.com/netease-youdao/EmotiVoice/pull/90) [#67](https://github.com/netease-youdao/EmotiVoice/issues/67) [#77](https://github.com/netease-youdao/EmotiVoice/issues/77)
 - [x] [Mac版一键安装包](https://github.com/netease-youdao/EmotiVoice/releases/download/v0.3/emotivoice-1.0.0-arm64.dmg) 已于2023年12月28日发布，**强烈推荐尽快下载使用，免费好用！**
 - [x] [易魔声 HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) 已于2023年12月6日发布上线。更易上手（无需任何安装配置），更快更稳定，单账户提供**超过 13,000 次免费调用**。此外，用户还可以使用[智云](https://ai.youdao.com/)提供的其它迷人的声音。
 - [x] [用你自己的数据定制音色](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data)已于2023年12月13日发布上线，同时提供了两个教程示例：[DataBaker Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/DataBaker)  [LJSpeech Recipe](https://github.com/netease-youdao/EmotiVoice/tree/main/data/LJspeech)。
 
 ## 开发中的特性
 
-- [ ] 支持调语速功能 #67 #77
-- [ ] 更多语言支持，例如日韩 #19 #22
+- [ ] 更多语言支持，例如日韩 [#19](https://github.com/netease-youdao/EmotiVoice/issues/19) [#22](https://github.com/netease-youdao/EmotiVoice/issues/22)
 
 易魔声倾听社区需求并积极响应，期待您的反馈！
 
@@ -50,13 +50,13 @@ EmotiVoice提供一个易于使用的web界面，还有用于批量生成结果�
 docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 ```
 
-Docker镜像更新于2023年11月29号。如果你使用了老的版本，推荐运行如下命令进行更新：
+Docker镜像更新于2024年1月4号。如果你使用了老的版本，推荐运行如下命令进行更新：
 ```sh
 docker pull syq163/emoti-voice:latest
-docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
+docker run -dp 127.0.0.1:8501:8501 -p 127.0.0.1:8000:8000 syq163/emoti-voice:latest
 ```
 
-现在打开浏览器，导航到 http://localhost:8501 ，就可以体验EmotiVoice强大的TTS功能。
+现在打开浏览器，导航到 http://localhost:8501 ，就可以体验EmotiVoice强大的TTS功能。从2024年的docker镜像版本开始，通过http://localhost:8000/可以使用类OpenAI TTS的API功能。
 
 ### 完整安装
 

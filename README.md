@@ -34,6 +34,8 @@ A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer
 
 ## Hot News
 
+- [x] Tuning voice speed is now supported in 'OpenAI-compatible-TTS API', thanks to [@john9405](https://github.com/john9405). [#90](https://github.com/netease-youdao/EmotiVoice/pull/90) [#67](https://github.com/netease-youdao/EmotiVoice/issues/67) [#77](https://github.com/netease-youdao/EmotiVoice/issues/77)
+
 - [x] [The EmotiVoice app for Mac](https://github.com/netease-youdao/EmotiVoice/releases/download/v0.3/emotivoice-1.0.0-arm64.dmg) was released on December 28th, 2023. Just download and taste EmotiVoice's offerings!
 
 - [x] [The EmotiVoice HTTP API](https://github.com/netease-youdao/EmotiVoice/wiki/HTTP-API) was released on December 6th, 2023. Easier to start, faster to use, and with **over 13,000 free calls**. Additionally, users can explore more captivating voices provided by [Zhiyun](https://ai.youdao.com/).
@@ -41,8 +43,7 @@ A demo is hosted on Replicate, [EmotiVoice](https://replicate.com/bramhooimeijer
 
 ## Features under development
 
-- [ ] Support for tuning voice speed. #67 #77 
-- [ ] Support for more languages, such as Japanese and Korean. #19 #22
+- [ ] Support for more languages, such as Japanese and Korean. [#19](https://github.com/netease-youdao/EmotiVoice/issues/19) [#22](https://github.com/netease-youdao/EmotiVoice/issues/22)
 
 EmotiVoice prioritizes community input and user requests. We welcome your feedback!
 
@@ -55,12 +56,14 @@ The easiest way to try EmotiVoice is by running the docker image. You need a mac
 ```sh
 docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
 ```
-The Docker image was updated on November 29, 2023. If you have an older version, please update it by running the following commands:
+The Docker image was updated on January 4th, 2024. If you have an older version, please update it by running the following commands:
 ```sh
 docker pull syq163/emoti-voice:latest
-docker run -dp 127.0.0.1:8501:8501 syq163/emoti-voice:latest
+docker run -dp 127.0.0.1:8501:8501 -p 127.0.0.1:8000:8000 syq163/emoti-voice:latest
 ```
 Now open your browser and navigate to http://localhost:8501 to start using EmotiVoice's powerful TTS capabilities.
+
+Starting from this version, the 'OpenAI-compatible-TTS API' is now accessible via http://localhost:8000/.
 
 ### Full installation
 
