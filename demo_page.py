@@ -174,3 +174,21 @@ def new_line(i):
 
 
 new_line(0)
+
+
+st.markdown(f"""
+
+Certainly! It seems like you're providing instructions for converting text to speech with specific pauses indicated by punctuation marks. Here's a concise set of instructions:
+
+Text-to-Speech Instructions:
+
+To control speech pauses, use the following punctuation marks:
+
+, - Short pause
+. - Medium pause
+.. - Long pause
+Example:
+
+"Hello, how are you today? I hope everything is going well. I wanted to discuss a few important points."
+
+""", unsafe_allow_html=True)

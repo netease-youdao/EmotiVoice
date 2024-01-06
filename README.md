@@ -133,6 +133,44 @@ You may find more information from our [wiki](https://github.com/netease-youdao/
 [Voice Cloning with your personal data](https://github.com/netease-youdao/EmotiVoice/wiki/Voice-Cloning-with-your-personal-data) has been released on December 13th, 2023.
 
 
+## Training a new language model
+
+Training a new language model involves a considerable amount of resources, including computing power, time, and a large, diverse dataset. If you're interested in training a new language model, particularly using OpenAI's GPT-3 architecture, here are the general steps and considerations:
+
+## Access to GPT Codebase:
+
+OpenAI has not released the training code for GPT-3, but they have released the codebase for GPT-2. You can find it on OpenAI's GitHub repository.
+
+## Compute Resources:
+
+Training a large language model like GPT-3 requires substantial computational resources, including powerful GPUs or TPUs and large-scale distributed computing.
+
+## Dataset:
+
+The size of your dataset is crucial. GPT-3 was trained on a massive and diverse dataset comprising a significant portion of the internet. The exact size is not disclosed, but it's on the order of hundreds of gigabytes.
+
+## Data Preprocessing:
+
+You'll need to preprocess your dataset, tokenizing and formatting it appropriately for training. GPT models often use byte-pair encoding or other tokenization techniques.
+
+## Training Parameters:
+
+Configuring training parameters, such as the number of layers, hidden units, and other hyperparameters, is a crucial step. These choices can impact the model's performance and training time.
+
+## Training Time:
+
+Training large language models takes a substantial amount of time. GPT-3 was trained for weeks on powerful hardware. The exact duration will depend on the size of your model and the dataset.
+
+## Evaluation and Fine-Tuning:
+
+After the initial training, you may need to evaluate your model's performance and fine-tune it on specific tasks or domains if necessary.
+
+## Ethical Considerations:
+
+Ensure that your use of the language model aligns with ethical standards, and be aware of potential biases in your training data.
+
+Remember that training a model like GPT-3 requires significant expertise in machine learning, access to substantial computational resources, and the ability to handle large datasets. If you don't have these resources, consider exploring pre-trained models or collaborating with research institutions that specialize in natural language processing.
+
 ## Roadmap & Future work
 
 - Our future plan can be found in the [ROADMAP](./ROADMAP.md) file.
