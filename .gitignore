@@ -3,3 +3,4 @@ WangZeJun/
 *.pyc
 .vscode/
 __pycache__/
+.idea/
