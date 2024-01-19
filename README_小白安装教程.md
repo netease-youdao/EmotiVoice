@@ -48,7 +48,7 @@ git lfs clone https://github.com/netease-youdao/EmotiVoice.git
 
 ```
 pip install torch torchaudio
-pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba pypinyin
+pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba pypinyin pypinyin_dict
 ```
 
 
@@ -135,9 +135,7 @@ streamlit run demo_page.py --server.port 6006 --logger.level debug
 安装依赖
 
 ```
-pip install fastapi
-pip install pydub
-pip install uvicorn[standard]
+pip install fastapi pydub uvicorn[standard] pyrubberband
 ```
 
 在6006端口启动服务(端口可根据自己的需求修改)

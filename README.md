@@ -71,7 +71,7 @@ Starting from this version, the 'OpenAI-compatible-TTS API' is now accessible vi
 conda create -n EmotiVoice python=3.8 -y
 conda activate EmotiVoice
 pip install torch torchaudio
-pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin
+pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin pypinyin_dict
 ```
 
 ### Prepare model files
@@ -120,9 +120,7 @@ streamlit run demo_page.py
 Thanks to @lewangdev for adding an OpenAI compatible API [#60](../../issues/60). To set it up, use the following command:
 
 ```sh
-pip install fastapi
-pip install pydub
-pip install uvicorn[standard]
+pip install fastapi pydub uvicorn[standard] pyrubberband
 uvicorn openaiapi:app --reload
 ```
 
