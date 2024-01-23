@@ -64,7 +64,7 @@ docker run -dp 127.0.0.1:8501:8501 -p 127.0.0.1:8000:8000 syq163/emoti-voice:lat
 conda create -n EmotiVoice python=3.8 -y
 conda activate EmotiVoice
 pip install torch torchaudio
-pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin
+pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin pypinyin_dict
 ```
 
 ### 准备模型文件
@@ -116,9 +116,7 @@ streamlit run demo_page.py
 非常感谢 @lewangdev 的相关该工作 [#60](../../issues/60)。通过运行如下命令来完成配置：
 
 ```sh
-pip install fastapi
-pip install pydub
-pip install uvicorn[standard]
+pip install fastapi pydub uvicorn[standard] pyrubberband
 uvicorn openaiapi:app --reload
 ```
 
