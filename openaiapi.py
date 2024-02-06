@@ -177,8 +177,8 @@ def text_to_speech(speechRequest: SpeechRequest):
     wav_audio.frame_rate=config.sampling_rate
     
     volume_value = speechRequest.volume
-    if volume_Value != 1.0:
-        wav_audio = wav_audio + (volume_value - 1.0)
+    if volume_value != 1.0:
+        wav_audio = wav_audio + (volume_value * 2 - 1.0)
         
     buffer = io.BytesIO()
     response_format = speechRequest.response_format
