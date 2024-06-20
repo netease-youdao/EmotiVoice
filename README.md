@@ -1,7 +1,7 @@
-<font size=4> README: EN | <a href="./README.zh.md">中文</a>  </font>
-
-
 <div align="center">
+<a href="https://trendshift.io/repositories/4833" target="_blank"><img src="https://trendshift.io/api/badge/repositories/4833" alt="netease-youdao%2FEmotiVoice | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+<font size=4> README: EN | <a href="./README.zh.md">中文</a>  </font>
     <h1>EmotiVoice 😊: a Multi-Voice and Prompt-Controlled TTS Engine</h1>
 </div>
 
