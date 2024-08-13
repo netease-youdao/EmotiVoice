@@ -65,6 +65,7 @@ conda create -n EmotiVoice python=3.8 -y
 conda activate EmotiVoice
 pip install torch torchaudio
 pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin pypinyin_dict
+python -m nltk.downloader "averaged_perceptron_tagger_eng"
 ```
 
 ### 准备模型文件

@@ -48,7 +48,8 @@ git lfs clone https://github.com/netease-youdao/EmotiVoice.git
 
 ```
 pip install torch torchaudio
-pip install numpy numba scipy transformers==4.26.1 soundfile yacs g2p_en jieba pypinyin pypinyin_dict
+pip install numpy numba scipy transformers soundfile yacs g2p_en jieba pypinyin pypinyin_dict
+python -m nltk.downloader "averaged_perceptron_tagger_eng"
 ```
 
 
