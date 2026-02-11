@@ -188,8 +188,8 @@ class PromptTTS(nn.Module):
                 param = param.data
             try:
                 own_state[name].copy_(param)
-            except:
-                print(f"{name} is not loaded")
+            except (RuntimeError, ValueError) as e:
+                print(f"Warning: {name} is not loaded: {e}")
 
     def make_pad_mask(self, lengths, max_len=None):
         batch_size = lengths.shape[0]
