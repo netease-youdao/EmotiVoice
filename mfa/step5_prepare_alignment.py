@@ -60,7 +60,7 @@ def main(args):
             wav_file = output_dir / i / f'{i}_{name}.wav'
             try:
                 os.symlink(wav_path, wav_file)
-            except:
+            except Exception:
                 print("ERROR PATH",wav_path)
                 continue
 

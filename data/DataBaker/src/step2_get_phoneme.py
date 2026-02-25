@@ -130,7 +130,7 @@ def onetime2(resource, sample):
     del sample["original_text"]
     try:
         phoneme = g2p_cn_en(text, resource["g2p_en"], resource["lexicon"]).split()#g2p_cn_eng_mix(text, resource["g2p_en"], resource["lexicon"]).split()
-    except:
+    except Exception:
         print("Warning!!! phoneme get error! " + \
         "Please check text")
         print("Text is: ", text)
