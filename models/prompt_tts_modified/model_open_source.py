@@ -188,7 +188,7 @@ class PromptTTS(nn.Module):
                 param = param.data
             try:
                 own_state[name].copy_(param)
-            except:
+            except Exception:
                 print(f"{name} is not loaded")
 
     def make_pad_mask(self, lengths, max_len=None):
