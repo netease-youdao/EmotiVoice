@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>声音试听</title>
+</head>
+<body>
+<div style="display:flex;">
+    心情：<input type="text" id="prompt" value="开心"/>
+    内容：<input type="text" id="input" style="flex:1"
+                value="请点击下方，等待合成后，会自动播放语音。此内容可以修改成为你想试听的内容。"/>
+</div>
+<div class="container">
+    <div id="playerWrapper">
+        <div id="loading" style="flex:1;text-align: center;">合成语音中，请稍后...</div>
+        <audio id="player" controls>
+        </audio>
+    </div>
+    <div id="visibleDiv"></div>
+</div>
+</body>
+<script type="text/javascript">
+    var player = document.getElementById('player');
+    var playerWrapper = document.getElementById('playerWrapper');
+    var previousSpeaker;
+    var loading = document.getElementById('loading');
+
+    const onItemClick = (e) => {
+        if (previousSpeaker) {
+            previousSpeaker.classList.remove('active');
+        }
+        loading.style.display = 'block';
+        player.style.display = 'none';
+        playerWrapper.style.display = 'flex';
+        playerWrapper.style.top = e.target.offsetTop + 'px';
+        playerWrapper.style.left = e.target.offsetLeft + 'px';
+        playerWrapper.style.width = e.target.offsetWidth + 'px';
+        playerWrapper.style.height = e.target.offsetHeight + 'px';
+        fetchSpeaker(e.target.innerText);
+        previousSpeaker = e.target;
+        e.target.classList.add('active');
+    }
+    let speakers = [];
+    var container = document.querySelector('.container')
+    // 占位Div
+    let spacerDiv = document.createElement('div');
+    // 可视区域内Div
+    let visibleDiv = document.getElementById('visibleDiv');
+    // 每个item的大小
+    let playItemSize = {width: 300, height: 60};
+    let columns = 1;
+
+    container.style.setProperty('--playItemWidth', playItemSize.width + 'px');
+    container.style.setProperty('--playItemHeight', playItemSize.height + 'px');
+
+    // fetch speakers
+    fetch('/speakers')
+        .then(response => response.json())
+        .then(r_data => {
+            speakers = r_data.speakers;
+            columns = Math.floor(container.offsetWidth / playItemSize.width);
+            let gap = (container.offsetWidth - columns * playItemSize.width) / (columns + 1);
+            spacerDiv.style.height = Math.ceil(speakers.length / columns) * (playItemSize.height + gap) + 'px';
+            container.appendChild(spacerDiv);
+            renderVisibleSpeakers();
+        });
+
+    const fetchSpeaker = (speakerId) => {
+        // post prompt and input
+        fetch('/v1/audio/speech', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: document.getElementById('prompt').value,
+                input: document.getElementById('input').value,
+                voice: speakerId,
+                language: "zh_us",
+                model: "emoti-voice",
+                response_format: "wav",
+                speed: 1,
+            })
+        }).then(response => response.blob())
+            .then(blob => {
+                player.style.display = 'block';
+                const url = URL.createObjectURL(blob);
+                player.src = url;
+                player.play();
+            }).finally(() => {
+            loading.style.display = 'none';
+        });
+
+    }
+
+    // fetch audio
+    let start, end;
+    // render visible speakers
+    const renderVisibleSpeakers = () => {
+        if (speakers.length === 0) {
+            return;
+        }
+        columns = Math.floor(container.offsetWidth / playItemSize.width);
+        // 行间隔，列间隔
+        let gap = (container.offsetWidth - columns * playItemSize.width) / (columns + 1);
+        container.style.setProperty('--gap', gap + 'px');
+
+        // 列之间的间隔
+        let column_gap = (container.offsetWidth - columns * (playItemSize.width + gap)) / (columns + 2);
+        var itemHeight = playItemSize.height + gap;
+        var itemWidth = playItemSize.width + gap;
+        // 可视区域内的起始行
+        let rows_start = Math.max(0, Math.ceil(container.scrollTop / itemHeight) - 1);
+        start = rows_start * columns;
+        // 可视区域内的结束行
+        let rows_end = Math.ceil((container.scrollTop + container.offsetHeight) / itemHeight);
+        end = Math.min(speakers.length, rows_end * columns);
+
+        visibleDiv.querySelectorAll('.playItem').forEach((playItem) => {
+            playItem.remove();
+        });
+        visibleDiv.innerHTML = '';
+        let col_index = 0;
+        for (let i = start; i < end; i++) {
+            col_index = i % columns;
+            const speaker = speakers[i];
+            const playItem = document.createElement('div');
+            playItem.classList.add('playItem');
+            playItem.innerHTML = `<span>${speaker}</span>`;
+            playItem.style.left = col_index * itemWidth + (col_index + 1) * column_gap + 'px';
+            playItem.style.top = Math.floor(i / columns) * itemHeight + 'px';
+            visibleDiv.appendChild(playItem);
+        }
+        visibleDiv.querySelectorAll('.playItem').forEach((playItem) => {
+            playItem.addEventListener('click', onItemClick);
+        });
+    };
+
+    // 滚动触发
+    container.addEventListener('scroll', () => {
+        renderVisibleSpeakers()
+    });
+
+    // 窗口大小变化触发
+    window.addEventListener('resize', () => {
+        renderVisibleSpeakers()
+    });
+</script>
+<style lang="text/css">
+    .container {
+        --playItemWidth: 300px;
+        --playItemHeight: 60px;
+        --gap: 4px;
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    #visibleDiv {
+        display: flex;
+        flex-wrap: wrap;
+        /*position: relative;*/
+        gap: var(--gap);
+        justify-content: space-between;
+    }
+
+    #playerWrapper {
+        display: none;
+        position: absolute;
+        z-index: 5;
+        align-items: center;
+    }
+
+    .playItem {
+        margin-top: 4px;
+        width: var(--playItemWidth);
+        height: var(--playItemHeight);
+        background-color: #f1f3f4;
+        position: absolute;
+        flex: 1;
+        outline: 1px solid white;
+        cursor: pointer;
+
+        span {
+            z-index: 10;
+            position: absolute;
+        }
+    }
+
+    .playItem:hover {
+        background: radial-gradient(circle, lightblue, lightgreen);
+    }
+
+    .playItem.active {
+        animation: playing 0.5s infinite alternate;
+    }
+
+    @keyframes playing {
+        0% {
+            box-shadow: 0 0 5px 5px lightblue;
+        }
+        100% {
+            box-shadow: 0 0 10px 10px lightgreen;
+        }
+    }
+
+    body {
+        overflow: hidden;
+        margin: 4px 0px;
+    }
+</style>
+</html>

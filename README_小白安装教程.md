@@ -146,6 +146,7 @@ uvicorn openaiapi:app --reload --port 6006
 ```
 
 接口文档地址：你的服务地址+`/docs`
+声音试听地址：`/`
 
 &emsp;
 

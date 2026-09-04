@@ -17,6 +17,7 @@ import pyrubberband as pyrb
 from pydub import AudioSegment
 from yacs import config as CONFIG
 from config.joint.config import Config
+from speakers.main import router as speakers_router
 
 LOGGER = logging.getLogger(__name__)
 
@@ -145,6 +146,7 @@ def emotivoice_tts(text, prompt, content, speaker, models):
 speakers = config.speakers
 models = get_models()
 app = FastAPI()
+app.include_router(speakers_router)
 lexicon = read_lexicon(f"{ROOT_DIR}/lexicon/librispeech-lexicon.txt")
 g2p = G2p()
 
@@ -182,3 +184,7 @@ def text_to_speech(speechRequest: SpeechRequest):
 
     return Response(content=buffer.getvalue(),
                     media_type=f"audio/{response_format}")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)
