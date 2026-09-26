@@ -85,8 +85,13 @@ def has_english_punctuation(text):
 re_digits = re.compile('(\d[\d\.]*)')
 def number_to_chinese(number):
     an2cn = An2Cn()
-    result = an2cn.an2cn(number)
-
+    n_parts = number.split(".")
+    if len(n_parts) > 2:
+        result = an2cn.an2cn('.'.join(n_parts[:2]))
+        for n in n_parts[2:]:
+            result += an2cn.an2cn(f"0.{n}")[1:]
+    else:
+        result = an2cn.an2cn(number)
     return result
 
 def tn_chinese(text):
