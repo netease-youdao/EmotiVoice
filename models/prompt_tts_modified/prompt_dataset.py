@@ -107,7 +107,7 @@ class Dataset_PromptTTS(torch.utils.data.Dataset):
         path = f"{dir}/{uttid}.npy"
         try:
             style_embedding = np.load(path)
-        except:
+        except Exception:
             prompt = self.tokenizer([prompt], return_tensors="pt")
             input_ids = prompt["input_ids"]
             token_type_ids = prompt["token_type_ids"]

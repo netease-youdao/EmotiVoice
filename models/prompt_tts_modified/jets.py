@@ -42,7 +42,7 @@ class JETSGenerator(nn.Module):
         #     state_dict_g = torch.load(config.pretrained_vocoder,map_location="cpu")
         #     self.generator.load_state_dict(state_dict_g['generator'])
         #     print("pretrained generator is loaded")
-        # except:
+        # except Exception:
         #     print("pretrained generator is not loaded for training")
         self.config=config
 

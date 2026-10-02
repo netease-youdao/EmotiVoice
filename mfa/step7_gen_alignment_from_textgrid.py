@@ -185,7 +185,7 @@ def main(args):
             try:
             # if wav_path.stem in textgrids:
                 text_grid_path = pathlib.Path(textgrids[f"{speaker}_{wav_path.stem.strip()}"])
-            except:
+            except Exception:
             # else:
                 print("ERROR TEXTGRID: ", f"{speaker}_{wav_path.stem.strip()}")
                 continue
@@ -200,7 +200,7 @@ def main(args):
                     text_.extend(t.split('_'))
                 try:
                     new_text, new_dur = insert_special_tokens(text_, tg_phones, special_tokens, duration)
-                except:
+                except Exception:
                     print(wav_path)
                     continue
                 
@@ -242,7 +242,7 @@ def main(args):
             else:
                 print('Missing alignment: {}'.format(str(text_grid_path)))
 
-            # except:
+            # except Exception:
             #     continue
     with open(args.aligned_wav, 'w') as fout:
         fout.writelines([x + '\n' for x in aligned_wav])
