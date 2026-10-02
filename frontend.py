@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import re
-from frontend_cn import g2p_cn, re_digits, tn_chinese
+from frontend_cn import g2p_cn, re_digits, tn_chinese, rewrite_before_number_to_chinese
 from frontend_en import ROOT_DIR, read_lexicon, G2p, get_eng_phoneme
 
 # Thanks to GuGCoCo and PatroxGaurab for identifying the issue: 
@@ -22,6 +22,7 @@ from frontend_en import ROOT_DIR, read_lexicon, G2p, get_eng_phoneme
 re_english_word = re.compile('([^\u4e00-\u9fa5]+|[ \u3002\uff0c\uff1f\uff01\uff1b\uff1a\u201c\u201d\u2018\u2019\u300a\u300b\u3008\u3009\u3010\u3011\u300e\u300f\u2014\u2026\u3001\uff08\uff09\u4e00-\u9fa5]+)', re.I)
 def g2p_cn_en(text, g2p, lexicon):
     # Our policy dictates that if the text contains Chinese, digits are to be converted into Chinese.
+    text = rewrite_before_number_to_chinese(text)    
     text=tn_chinese(text)
     parts = re_english_word.split(text)
     parts=list(filter(None, parts))
